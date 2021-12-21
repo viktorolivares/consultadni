@@ -3,9 +3,12 @@
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
+            <div class="card text-center">
+                <div class="card-header text-primary">
                     You're welcome!
+                </div>
+                <div class="card-body">
+                    <img src="{{asset('img/logo_at.png')}}" alt="apuestatotal" class="img-fluid">
                 </div>
             </div>
         </div>

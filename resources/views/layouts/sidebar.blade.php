@@ -22,16 +22,16 @@
     </div>
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-            aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse" aria-expanded="true"
+            aria-controls="collapse">
             <i class="fas fa-fw fa-cog"></i>
             <span>Consultas</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapse" class="collapse {{ (request()->is('dni','dnimultiple')) ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">DNI</h6>
-                <a class="collapse-item" href="{{route('dni')}}">Individual</a>
-                <a class="collapse-item" href="{{route('dnimultiple')}}">Masivo</a>
+                <a class="collapse-item {{ (request()->is('dni')) ? 'active' : '' }}" href="{{route('dni')}}">Individual</a>
+                <a class="collapse-item {{ (request()->is('dnimultiple')) ? 'active' : '' }}" href="{{route('dnimultiple')}}">Masivo</a>
             </div>
         </div>
     </li>

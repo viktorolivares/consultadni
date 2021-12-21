@@ -86,8 +86,6 @@
                     }
                     else
                     {
-                        console.log(data.query1)
-
                         var tr = $('<tr>');
                         var props = ["dni", "nombres", "apellidoPaterno", "apellidoMaterno", "codVerifica"];
 

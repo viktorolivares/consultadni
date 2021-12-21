@@ -42,11 +42,11 @@
                                 <input type="text" class="form-control" id="address">
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="date">Fecha de Nacimiento</label>
+                                <label for="date">Fecha de Nac.</label>
                                 <input type="text" class="form-control" id="date">
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="code">Código de Verificación</label>
+                                <label for="code">Código de Verf.</label>
                                 <input type="number" class="form-control" id="code" disabled>
                             </div>
                         </div>
@@ -85,7 +85,6 @@
                 }
                 else
                 {
-                    console.log(data)
                     $("#name").val(data.query1.nombres)
                     $("#lastname1").val(data.query1.apellidoPaterno)
                     $("#lastname2").val(data.query1.apellidoMaterno)
@@ -99,6 +98,8 @@
                     }
 
                     $.notify("Consulta cargada exitosamente", "success");
+
+                    console.log(data)
 
                 }
             });
