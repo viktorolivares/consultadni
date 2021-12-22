@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 Use GuzzleHttp\Client;
 use Carbon\Carbon;
@@ -26,14 +27,14 @@ class OddsController extends Controller
                 'User-Agent' => 'laravel/guzzle',
                 'Accept' => 'application/json',
             ],
-            'allow_redirects' => [
-                'max' => 5
-            ]
         ];
 
         $res = $client->request('GET', 'api/v2/live/check');
-        $response = json_decode($res->getBody()->getContents(), true);
+
+        $response = json_decode($res->getBody()->getContents(), false);
+
         return response()->json($response);
 
     }
+
 }
