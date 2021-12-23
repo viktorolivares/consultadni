@@ -5,7 +5,7 @@
         <div class="col-md-2">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="pb-4">Inputs</h6>
+                    <h6 class="pb-4">Inputs | Máximo 50 Consultas</h6>
                     <form method="GET" id="form-dni">
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Query DNI</label>
@@ -81,64 +81,70 @@
 
         if (dni)
         {
-            for (var i=0; i < dni.length; i++)
-            {
-                $.get("/dni/" + dni[i], function (data)
+
+            if(dni.length <= 50){
+                for (var i=0; i < dni.length; i++)
                 {
-                    var table = '';
-
-                    if (data.query1.error == 404)
+                    $.get("/dni/" + dni[i], function (data)
                     {
-                        $.notify("No se encontró coincidencias || Dni debe tener 8 dígitos", "info");
-                    }
-                    else
-                    {
+                        var table = '';
 
-                        if (data.query2.vMensajeResponse) {
-
-                            table += '<tr class="table-danger">',
-                            table += '<td>' + data.query1.dni + '</td>',
-                            table += '<td>' + data.query1.nombres + '</td>',
-                            table += '<td>' + data.query1.apellidoPaterno + '</td>',
-                            table += '<td>' + data.query1.apellidoMaterno + '</td>',
-                            table += '<td>' + data.query1.codVerifica + '</td>',
-                            table += '<td>' + data.query2.vMensajeResponse + '</td>',
-                            table += '<td>' + '-' + '</td>',
-                            table += '<td>' + '-' + '</td>',
-                            table += '</tr>'
-
-                            $('#body').append(table);
-
+                        if (data.error == 404)
+                        {
+                            $.notify("Ocurrió un error, no xiste coincidencias", "info");
                         }
                         else
                         {
-                            var date = $.date(data.query2.dtFecNacimiento)
-                            var date2 = $.date2(data.query2.dtFecNacimiento)
 
-                            var age = calcularAge(date2)
+                            if (data.query2.vMensajeResponse) {
 
-                            if (age < 18) {
-                                table += '<tr class="table-danger">'
-                            } else {
-                                table += '<tr>'
+                                table += '<tr class="table-danger">',
+                                table += '<td>' + data.query1.dni + '</td>',
+                                table += '<td>' + data.query1.nombres + '</td>',
+                                table += '<td>' + data.query1.apellidoPaterno + '</td>',
+                                table += '<td>' + data.query1.apellidoMaterno + '</td>',
+                                table += '<td>' + data.query1.codVerifica + '</td>',
+                                table += '<td>' + data.query2.vMensajeResponse + '</td>',
+                                table += '<td>' + '-' + '</td>',
+                                table += '<td>' + '-' + '</td>',
+                                table += '</tr>'
+
+                                $('#body').append(table);
+
+                            }
+                            else
+                            {
+                                var date = $.date(data.query2.dtFecNacimiento)
+                                var date2 = $.date2(data.query2.dtFecNacimiento)
+
+                                var age = calcularAge(date2)
+
+                                if (age < 18) {
+                                    table += '<tr class="table-danger">'
+                                } else {
+                                    table += '<tr>'
+                                }
+
+                                table += '<td>' + data.query1.dni + '</td>',
+                                table += '<td>' + data.query1.nombres + '</td>',
+                                table += '<td>' + data.query1.apellidoPaterno + '</td>',
+                                table += '<td>' + data.query1.apellidoMaterno + '</td>',
+                                table += '<td>' + data.query1.codVerifica + '</td>',
+                                table += '<td>' + date + '</td>',
+                                table += '<td>' + calcularAge(date2) + '</td>',
+                                table += '<td>' + data.query2.vDireccion + '</td>',
+                                table += '</tr>'
+
+                                $('#body').append(table);
                             }
 
-                            table += '<td>' + data.query1.dni + '</td>',
-                            table += '<td>' + data.query1.nombres + '</td>',
-                            table += '<td>' + data.query1.apellidoPaterno + '</td>',
-                            table += '<td>' + data.query1.apellidoMaterno + '</td>',
-                            table += '<td>' + data.query1.codVerifica + '</td>',
-                            table += '<td>' + date + '</td>',
-                            table += '<td>' + calcularAge(date2) + '</td>',
-                            table += '<td>' + data.query2.vDireccion + '</td>',
-                            table += '</tr>'
-
-                            $('#body').append(table);
+                            $('#card-table').show()
                         }
-
-                        $('#card-table').show()
-                    }
-                });
+                    });
+                }
+            } else{
+                $.notify("Número máximo de consultas: 50", "error");
+                $('#card-table').toggle()
             }
         }
         else
@@ -193,10 +199,11 @@
         return age;
     }
 
+    var d = new Date().getTime() ;
+
     $("#btn-excel").click(function(e) {
         $("#table-dni").table2excel({
-            name: "Worksheet Name",
-            filename: "pf_dni.xls",
+            filename: "dni-" + d + ".xls",
             preserveColors: false
         });
     });
