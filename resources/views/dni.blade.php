@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
                     <h6 class="pb-4">Inputs</h6>
@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8" id="card-form">
+        <div class="col-md-9" id="card-form">
             <div class="card">
                 <div class="card-body mt-3">
                     <form>
@@ -37,13 +37,17 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-4">
                                 <label for="address">Dirección</label>
                                 <input type="text" class="form-control" id="address">
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="date">Fecha de Nac.</label>
                                 <input type="text" class="form-control" id="date">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="age">Edad</label>
+                                <input type="number" class="form-control" id="age" disabled>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="code">Código de Verf.</label>
@@ -64,6 +68,7 @@
     $("#btn-dni").on("click", function (e) {
 
         e.preventDefault()
+        resetForm();
         $("#alert").hide()
 
         var dni = $("#dni").val()
@@ -77,30 +82,50 @@
 
         if (dni)
         {
-            $.get("/dni/" + dni, function (data)
-            {
-                if (data.error == 404)
-                {
-                    $.notify("No se encontró coincidencias || Dni debe tener 8 dígitos", "info");
-                }
-                else
-                {
-                    $("#name").val(data.query1.nombres)
-                    $("#lastname1").val(data.query1.apellidoPaterno)
-                    $("#lastname2").val(data.query1.apellidoMaterno)
-                    $("#code").val(data.query1.codVerifica)
-                    $("#address").val(data.query2.vDireccion)
-                    $("#date").val(data.query2.dtFecNacimiento)
-
-
-                    if (data.query2.vMensajeResponse) {
-                        $.notify(data.query2.vMensajeResponse, "error");
+            $.ajax({
+                type: 'GET',
+                url: "/dni/" + dni,
+                success: function (data) {
+                    if (data.error == 404)
+                    {
+                        $.notify("No se encontró coincidencias || Dni debe tener 8 dígitos", "info");
                     }
+                    else
+                    {
 
-                    $.notify("Consulta cargada exitosamente", "success");
+                        if (data.query2.vMensajeResponse) {
 
-                    console.log(data)
+                            $.notify(data.query2.vMensajeResponse, "error");
+                            $("#name").val(data.query1.nombres)
+                            $("#lastname1").val(data.query1.apellidoPaterno)
+                            $("#lastname2").val(data.query1.apellidoMaterno)
+                            $("#code").val(data.query1.codVerifica)
 
+                        }
+                        else{
+
+                            date = $.date(data.query2.dtFecNacimiento)
+                            date2 = $.date2(data.query2.dtFecNacimiento)
+
+                            $("#name").val(data.query1.nombres)
+                            $("#lastname1").val(data.query1.apellidoPaterno)
+                            $("#lastname2").val(data.query1.apellidoMaterno)
+                            $("#code").val(data.query1.codVerifica)
+                            $("#address").val(data.query2.vDireccion)
+                            $("#age").val(calcularAge(date2))
+
+                            if (calcularAge(date2) < 18) {
+                            $.notify("DNI Corresponde a un menor de edad", "error");
+                            }
+
+                            $("#date").val(date);
+                        }
+
+                        $.notify("Consulta cargada exitosamente", "success");
+
+                        console.log(data)
+
+                    }
                 }
             });
         }
@@ -109,6 +134,60 @@
             $.notify("Ingrese un número de DNI", "error", { position:"top center" });
         }
     });
+
+    $.date = function(dateObject) {
+        var d = new Date(dateObject);
+        var day = d.getDate();
+        var month = d.getMonth() + 1;
+        var year = d.getFullYear();
+        if (day < 10) {
+            day = "0" + day;
+        }
+        if (month < 10) {
+            month = "0" + month;
+        }
+        var date = day + "/" + month + "/" + year;
+
+        return date;
+    };
+
+    $.date2 = function(dateObject) {
+        var d = new Date(dateObject);
+        var day = d.getDate();
+        var month = d.getMonth() + 1;
+        var year = d.getFullYear();
+        if (day < 10) {
+            day = "0" + day;
+        }
+        if (month < 10) {
+            month = "0" + month;
+        }
+        var date = year + "/" + month + "/" + day;
+        return date;
+    };
+
+    function calcularAge(date) {
+        var today = new Date();
+        var birthday = new Date(date);
+        var age = today.getFullYear() - birthday.getFullYear();
+        var m = today.getMonth() - birthday.getMonth();
+
+        if (m < 0 || (m === 0 && today.getDate() < birthday.getDate())) {
+            age--;
+        }
+
+        return age;
+    }
+
+    function resetForm(){
+        $("#name").val('')
+        $("#lastname1").val('')
+        $("#lastname2").val('')
+        $("#code").val('')
+        $("#address").val('')
+        $("#date").val('');
+        $("#age").val('');
+    }
 
 </script>
 

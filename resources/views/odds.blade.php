@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body mt-3">
-                    <table class="table table-bordered table-striped table-hover">
+                    <table class="table table-bordered table-striped table-hover" id="table">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Id</th>
@@ -13,10 +13,18 @@
                                 <th>Events</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="body">
                         </tbody>
                     </table>
-                    <div class="card">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <input type="number" id="event" class="form-control" placeholder="Ingresa Número de evento">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" id="btn-event">Apply</button>
+                    </form>
+                    <div class="card" id="events">
                         <div class="card-body">
                         </div>
                     </div>
@@ -32,6 +40,12 @@
 
 queryJson();
 
+var events = $('#events')
+var table = $('#table')
+
+events.hide()
+table.hide()
+
 function queryJson(){
     $.ajax({
         url: "{{ route('queryodds') }}",
@@ -39,9 +53,7 @@ function queryJson(){
         dataType: "JSON",
         success: function(response){
 
-            var data = JSON.stringify(response.data.events);
-
-            $("#events").text(data)
+            table.show()
 
             for (i = 0; i < response.data.sports.length; i++){
                 $("#body").append(
@@ -53,8 +65,22 @@ function queryJson(){
                 );
             }
         }
-    });
-}
+    })
+};
+
+$("#btn-event").on("click", function (e) {
+    e.preventDefault()
+    var id = $('#event').val()
+    $.ajax({
+        url: "{{ route('queryodds') }}",
+        type: "GET",
+        dataType: "JSON",
+        success: function(response){
+            var event = response.data.events[id]
+            console.log(event)
+        }
+    })
+});
 
 </script>
 
