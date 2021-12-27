@@ -39,8 +39,6 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    @include('layouts.logoutmodal')
-
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

@@ -5,10 +5,9 @@
     <div class="col-md-3">
         <div class="card">
             <div class="card-body">
-                <h6 class="pb-4">Inputs</h6>
                 <form method="GET" id="form-dni">
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Query DNI</label>
+                        <label for="exampleFormControlInput1">N° de DNI</label>
                         <input type="number" class="form-control" id="dni">
                     </div>
                     <div class="form-group float-right">

@@ -5,7 +5,6 @@
     <div class="col-md-3">
         <div class="card">
             <div class="card-body">
-                <h6 class="pb-4">Input</h6>
                 <form method="GET" id="form-dni">
                     <div class="form-group">
                         <label for="exampleFormControlInput1">N° de DNI</label>
@@ -59,7 +58,7 @@
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-header bg-info">
-                        <h5 class="card-title text-white">Fuente: Extert. Api</h5>
+                        <h5 class="card-title text-white">Fuente: External Api</h5>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item" id="nameE">Nombres: <span></span></li>
@@ -78,61 +77,61 @@
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="name">Nombre</label>
-                                    <input type="text" class="form-control" id="name">
+                                    <input type="text" class="form-control" id="name" readonly>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="lastname1">Apellido Paterno</label>
-                                    <input type="text" class="form-control" id="lastname1">
+                                    <input type="text" class="form-control" id="lastname1" readonly>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="lastname2">Apellido Materno</label>
-                                    <input type="text" class="form-control" id="lastname2">
+                                    <input type="text" class="form-control" id="lastname2" readonly>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="status">Estado Civil</label>
-                                    <input type="text" class="form-control" id="status">
+                                    <input type="text" class="form-control" id="status" readonly>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="sex">Genero</label>
-                                    <input type="text" class="form-control" id="sex">
+                                    <input type="text" class="form-control" id="sex" readonly>
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="age">Edad</label>
-                                    <input type="text" class="form-control" id="age">
+                                    <input type="text" class="form-control" id="age" readonly>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="code">Código de Verf.</label>
-                                    <input type="text" class="form-control" id="code">
+                                    <input type="text" class="form-control" id="code" readonly>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-3">
                                     <label for="date">Fecha Nac.</label>
-                                    <input type="text" class="form-control" id="date">
+                                    <input type="text" class="form-control" id="date" readonly>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="address">Dirección</label>
-                                    <input type="text" class="form-control" id="address">
+                                    <input type="text" class="form-control" id="address" readonly>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="ubigeo">Ubigeo</label>
-                                    <input type="text" class="form-control" id="ubigeo">
+                                    <input type="text" class="form-control" id="ubigeo" readonly>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="department">Departamento</label>
-                                    <input type="text" class="form-control" id="department">
+                                    <input type="text" class="form-control" id="department" readonly>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="province">Provincia</label>
-                                    <input type="text" class="form-control" id="province">
+                                    <input type="text" class="form-control" id="province" readonly>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="district">Distrito</label>
-                                    <input type="text" class="form-control" id="district">
+                                    <input type="text" class="form-control" id="district" readonly>
                                 </div>
                             </div>
                         </form>

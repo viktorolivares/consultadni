@@ -5,10 +5,10 @@
         <div class="col-md-2">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="pb-4">Inputs | Máximo 50 Consultas</h6>
+                    <h5 class="pb-4 text-primary">Máximo 50 Consultas</h5>
                     <form method="GET" id="form-dni">
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">Query DNI</label>
+                            <label for="exampleFormControlInput1">N° de DNI</label>
                             <textarea class="form-control" id="dni" rows="15"></textarea>
                         </div>
                         <div class="form-group float-right">
@@ -21,9 +21,9 @@
        <div class="col-md-10" id="card-table">
             <div class="card">
                 <div class="card-header">
-                    <button class="btn btn-success" id="btn-excel">
+                    <button class="btn btn-success fa-pull-right" id="btn-excel">
                         <i class="fa fa-file-excel"></i>
-                        &nbsp; Exportar en Excel
+                        &nbsp;Excel
                     </button>
                 </div>
                 <div class="card-body mt-3">
@@ -88,21 +88,23 @@
                     {
                         var table = '';
 
+                        console.log(data)
+
                         if (data.error == 404)
                         {
                             $.notify("Ocurrió un error, no xiste coincidencias", "info");
                         }
                         else
                         {
-                            if (data.query2.vMensajeResponse) {
+                            if (data.midis.original.vMensajeResponse) {
 
                                 table += '<tr class="table-danger">',
-                                table += '<td>' + data.query1.dni + '</td>',
-                                table += '<td>' + data.query1.nombres + '</td>',
-                                table += '<td>' + data.query1.apellidoPaterno + '</td>',
-                                table += '<td>' + data.query1.apellidoMaterno + '</td>',
-                                table += '<td>' + data.query1.codVerifica + '</td>',
-                                table += '<td>' + data.query2.vMensajeResponse + '</td>',
+                                table += '<td>' + data.externalApi.original.result.DNI + '</td>',
+                                table += '<td>' + data.sunat.original.nombreSoli + '</td>',
+                                table += '<td>' + data.sunat.original.apePatSoli + '</td>',
+                                table += '<td>' + data.sunat.original.apeMatSoli + '</td>',
+                                table += '<td>' + data.codigoV + '</td>',
+                                table += '<td>' + data.midis.original.vMensajeResponse + '</td>',
                                 table += '<td>' + '-' + '</td>',
                                 table += '<td>' + '-' + '</td>',
                                 table += '</tr>'
@@ -112,8 +114,8 @@
                             }
                             else
                             {
-                                var date = $.date(data.query2.dtFecNacimiento)
-                                var date2 = $.date2(data.query2.dtFecNacimiento)
+                                var date = $.date(data.midis.original.dtFecNacimiento)
+                                var date2 = $.date2(data.midis.original.dtFecNacimiento)
 
                                 var age = calcularAge(date2)
 
@@ -123,14 +125,14 @@
                                     table += '<tr>'
                                 }
 
-                                table += '<td>' + data.query1.dni + '</td>',
-                                table += '<td>' + data.query1.nombres + '</td>',
-                                table += '<td>' + data.query1.apellidoPaterno + '</td>',
-                                table += '<td>' + data.query1.apellidoMaterno + '</td>',
-                                table += '<td>' + data.query1.codVerifica + '</td>',
+                                table += '<td>' + data.externalApi.original.result.DNI + '</td>',
+                                table += '<td>' + data.sunat.original.nombreSoli + '</td>',
+                                table += '<td>' + data.sunat.original.apePatSoli + '</td>',
+                                table += '<td>' + data.sunat.original.apeMatSoli + '</td>',
+                                table += '<td>' + data.codigoV + '</td>',
                                 table += '<td>' + date + '</td>',
                                 table += '<td>' + calcularAge(date2) + '</td>',
-                                table += '<td>' + data.query2.vDireccion + '</td>',
+                                table += '<td>' + data.midis.original.vDireccion + '</td>',
                                 table += '</tr>'
 
                                 $('#body').append(table);
