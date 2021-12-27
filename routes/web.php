@@ -2,9 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\DNIController;
+use App\Http\Controllers\DniController;
 use App\Http\Controllers\OddsController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,10 +18,12 @@ use App\Http\Controllers\OddsController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 /*Consultas DNI*/
-Route::get('/dni', [DNIController::class, 'dni'])->name('dni');
-Route::get('/dni/{number}', [DNIController::class, 'getDni'])->name('consultadni');
-Route::get('/dnimultiple', [DNIController::class, 'dniMultiple'])->name('dnimultiple');
+Route::get('/dni', [DniController::class, 'dni'])->name('dni');
+Route::get('/services', [DniController::class, 'services'])->name('services');
+Route::get('/dni/{number}', [DniController::class, 'getDni'])->name('consultadni');
+Route::get('/dnimultiple', [DniController::class, 'dniMultiple'])->name('dnimultiple');
 
-/*Scraping Casas de Apuesta*/
+/*Web Scraping*/
 Route::get('/odds', [OddsController::class, 'index'])->name('odds');
 Route::get('/queryodds', [OddsController::class, 'odds'])->name('queryodds');
+

@@ -9,7 +9,7 @@
                     <form method="GET" id="form-dni">
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Query DNI</label>
-                            <textarea class="form-control" id="dni" rows="10"></textarea>
+                            <textarea class="form-control" id="dni" rows="15"></textarea>
                         </div>
                         <div class="form-group float-right">
                             <button class="btn btn-primary" type="submit" id="btn-dni">Apply</button>
@@ -81,7 +81,6 @@
 
         if (dni)
         {
-
             if(dni.length <= 50){
                 for (var i=0; i < dni.length; i++)
                 {
@@ -95,7 +94,6 @@
                         }
                         else
                         {
-
                             if (data.query2.vMensajeResponse) {
 
                                 table += '<tr class="table-danger">',
@@ -137,7 +135,6 @@
 
                                 $('#body').append(table);
                             }
-
                             $('#card-table').show()
                         }
                     });

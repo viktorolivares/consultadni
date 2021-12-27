@@ -1,64 +1,64 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <h6 class="pb-4">Inputs</h6>
-                    <form method="GET" id="form-dni">
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Query DNI</label>
-                            <input type="number" class="form-control" id="dni">
-                        </div>
-                        <div class="form-group float-right">
-                            <button class="btn btn-primary" type="submit" id="btn-dni">Apply</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-9" id="card-form">
-            <div class="card">
-                <div class="card-body mt-3">
-                    <form>
-                        <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label for="name">Nombre</label>
-                                <input type="text" class="form-control" id="name">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="lastname1">Apellido Paterno</label>
-                                <input type="text" class="form-control" id="lastname1">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="lastname2">Apellido Materno</label>
-                                <input type="text" class="form-control" id="lastname2">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label for="address">Dirección</label>
-                                <input type="text" class="form-control" id="address">
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label for="date">Fecha de Nac.</label>
-                                <input type="text" class="form-control" id="date">
-                            </div>
-                            <div class="form-group col-md-2">
-                                <label for="age">Edad</label>
-                                <input type="number" class="form-control" id="age" disabled>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label for="code">Código de Verf.</label>
-                                <input type="number" class="form-control" id="code" disabled>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+<div class="row">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="pb-4">Inputs</h6>
+                <form method="GET" id="form-dni">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Query DNI</label>
+                        <input type="number" class="form-control" id="dni">
+                    </div>
+                    <div class="form-group float-right">
+                        <button class="btn btn-primary" type="submit" id="btn-dni">Apply</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+    <div class="col-md-9" id="card-form">
+        <div class="card">
+            <div class="card-body mt-3">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="name">Nombre</label>
+                            <input type="text" class="form-control" id="name">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="lastname1">Apellido Paterno</label>
+                            <input type="text" class="form-control" id="lastname1">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="lastname2">Apellido Materno</label>
+                            <input type="text" class="form-control" id="lastname2">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="address">Dirección</label>
+                            <input type="text" class="form-control" id="address">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">Fecha de Nac.</label>
+                            <input type="text" class="form-control" id="date">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="age">Edad</label>
+                            <input type="number" class="form-control" id="age" disabled>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="code">Código de Verf.</label>
+                            <input type="number" class="form-control" id="code" disabled>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @push('scripts')
@@ -88,30 +88,30 @@
                 success: function (data) {
                     if (data.error == 404)
                     {
-                        $.notify("No se encontró coincidencias || Dni debe tener 8 dígitos", "info");
+                        $.notify("No se encontró coincidencias", "info");
                     }
                     else
                     {
 
-                        if (data.query2.vMensajeResponse) {
+                        if (data.midis.original.vMensajeResponse) {
 
-                            $.notify(data.query2.vMensajeResponse, "error");
-                            $("#name").val(data.query1.nombres)
-                            $("#lastname1").val(data.query1.apellidoPaterno)
-                            $("#lastname2").val(data.query1.apellidoMaterno)
-                            $("#code").val(data.query1.codVerifica)
+                            $.notify(data.midis.original.vMensajeResponse, "error");
+                            $("#name").val(data.sunat.original.nombreSoli)
+                            $("#lastname1").val(data.sunat.original.apePatSoli)
+                            $("#lastname2").val(data.sunat.original.apeMatSoli)
+                            $("#code").val(data.codigoV)
 
                         }
                         else{
 
-                            date = $.date(data.query2.dtFecNacimiento)
-                            date2 = $.date2(data.query2.dtFecNacimiento)
+                            date = $.date(data.midis.original.dtFecNacimiento)
+                            date2 = $.date2(data.midis.original.dtFecNacimiento)
 
-                            $("#name").val(data.query1.nombres)
-                            $("#lastname1").val(data.query1.apellidoPaterno)
-                            $("#lastname2").val(data.query1.apellidoMaterno)
-                            $("#code").val(data.query1.codVerifica)
-                            $("#address").val(data.query2.vDireccion)
+                            $("#name").val(data.sunat.original.nombreSoli)
+                            $("#lastname1").val(data.sunat.original.apePatSoli)
+                            $("#lastname2").val(data.sunat.original.apeMatSoli)
+                            $("#code").val(data.codigoV)
+                            $("#address").val(data.midis.original.vDireccion)
                             $("#age").val(calcularAge(date2))
 
                             if (calcularAge(date2) < 18) {

@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
-use Peru\Jne\DniFactory;
-use GuzzleHttp\Client;
-use Carbon\Carbon;
-use Str;
+use App\Http\Services\ExternalApi;
+use App\Http\Services\Midis;
+use App\Http\Services\Oefa;
+use App\Http\Services\Sunat;
 
-class DNIController extends Controller
+
+class DniController extends Controller
 {
 
     public function dniMultiple()
@@ -22,46 +23,40 @@ class DNIController extends Controller
         return view('dni');
     }
 
+    public function services()
+    {
+        return view('services');
+    }
+
     public function getDni($dni)
     {
+        $midis = Midis::search($dni);
+        $externalApi = ExternalApi::search($dni);
+        $oefa = Oefa::search($dni);
+        $sunat = Sunat::search($dni);
 
-        $client = new Client(['base_uri' => 'http://sdv.midis.gob.pe/', 'verify' => false]);
+        $verifyCode = $this->getVerifyCode($dni);
 
-        $parameters = [
-            'http_errors' => false,
-            'connect_timeout' => 5,
-            'headers' => [
-                'User-Agent' => 'laravel/guzzle',
-                'Accept' => 'application/json',
-            ],
-            'allow_redirects' => [
-                'max' => 5
-            ],
-            'query' => [
-                'iCodAplicacion' => 27,
-                'iIdTipDocumento' => 1,
-                'vNroDocumento' => $dni
-            ]
-        ];
+        return response()->json([
+            'codigoV' => $verifyCode,
+            'midis' => $midis,
+            'externalApi' => $externalApi,
+            'oefa' => $oefa,
+            'sunat' => $sunat
+        ]);
+    }
 
-
-        if (Str::length($dni) <= 8 ) {
-            $factory = new DniFactory();
-            $cs = $factory->create();
-            $person = $cs->get($dni);
-
-            $res = $client->request('POST', 'Sis_IDM_Admin/Persona/GetRENIEC', $parameters);
-            $response = json_decode($res->getBody()->getContents(), true);
-
-            if (!$person || !$response) {
-                return response()->json(["error" => 404]);
-            }
-            return response()->json(['query1' => $person, 'query2' =>$response] );
+    private function getVerifyCode($dni)
+    {
+        $suma = 5;
+        $len = strlen($dni);
+        $hash = [3, 2, 7, 6, 5, 4, 3, 2];
+        for ($i = 0; $i < $len; ++$i) {
+            $suma += $dni[$i] * $hash[$i];
         }
+        $entero = (int) ($suma / 11);
+        $digito = 11 - ($suma - $entero * 11);
 
-        else
-        {
-            return response()->json(["error" => 404]);
-        }
+        return $digito > 9 ? $digito - 10 : $digito;
     }
 }

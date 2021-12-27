@@ -5,7 +5,7 @@
         <div class="col-md-6">
             <div class="card text-center">
                 <div class="card-header text-primary">
-                    You're welcome!
+                    Equipo de Prevención de Fraude - Online
                 </div>
                 <div class="card-body">
                     <img src="{{asset('img/logo_at.png')}}" alt="apuestatotal" class="img-fluid">
