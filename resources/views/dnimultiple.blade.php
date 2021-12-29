@@ -24,9 +24,9 @@
                     <div class="card">
                         <div class="card-body mb-2">
                             <div class="my-2">
-                                <button class="btn btn-success btn-lg" id="btn-excel">
-                                    <i class="fa fa-file-excel"></i>
-                                    &nbsp;Proceso finalizado |  Exportar en Excel
+                                <button class="btn btn-success" id="btn-excel">
+                                    <i class="fa fa-file-excel"></i> &nbsp;
+                                    Proceso finalizado |  Exportar en Excel
                                 </button>
                             </div>
                             <div class="table-responsive-md">
@@ -39,7 +39,6 @@
                                             <th>Apellido Materno</th>
                                             <th>Código de Verf.</th>
                                             <th>Fecha de Nac.</th>
-                                            <th>Estado Civil</th>
                                             <th>Edad</th>
                                             <th>Genero</th>
                                             <th>Dirección</th>
@@ -141,6 +140,7 @@
                                     table += '<td>' + data.midis.original.vMensajeResponse + '</td>',
                                     table += '<td>' + '-' + '</td>',
                                     table += '<td>' + '-' + '</td>',
+                                    table += '<td>' + '-' + '</td>',
                                     table += '</tr>'
 
                                     $('#body').append(table);
@@ -175,18 +175,7 @@
                                     table += '<td>' + data.sunat.original.apePatSoli + '</td>',
                                     table += '<td>' + data.sunat.original.apeMatSoli + '</td>',
                                     table += '<td>' + data.codigoV + '</td>',
-                                    table += '<td>' + date + '</td>'
-
-                                    if (data.oefa.original.estadoCivil == 112) {
-                                        table += '<td>' + 'Soltero' + '</td>'
-                                    } else if(data.oefa.original.estadoCivil == 115) {
-                                        table += '<td>' + 'Divorciado' + '</td>'
-                                    } else if(data.oefa.original.estadoCivil == 113) {
-                                        table += '<td>' + 'Casado' + '</td>'
-                                    } else {
-                                        table += '<td>' + 'Viudo' + '</td>'
-                                    }
-
+                                    table += '<td>' + date + '</td>',
                                     table += '<td>' + calcularAge(date2) + '</td>'
 
                                     if (data.oefa.original.genero == 117) {

@@ -186,7 +186,7 @@
                             } else if(data.oefa.original.estadoCivil == 113) {
                                 $("#status").val('Casado(a)')
                             } else {
-                                $("#status").val('Viudo(a)')
+                                $("#status").val('-')
                             }
 
                             $("#age").val(calcularAge(date2))
@@ -201,6 +201,7 @@
 
                         $.notify("Consulta cargada exitosamente", "success");
                     }
+                    console.log(data)
                 }
             });
         }
