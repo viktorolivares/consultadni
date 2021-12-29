@@ -5,7 +5,7 @@
         <div class="col-md-2">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="pb-4 text-primary">Máximo 50 Consultas</h5>
+                    <h5 class="pb-4 text-primary">Máximo 500 Consultas</h5>
                     <form method="GET" id="form-dni">
                         <div class="form-group">
                             <label for="exampleFormControlInput1">N° de DNI</label>
@@ -31,7 +31,7 @@
                         <table class="table table-bordered table-hover table-sm table-condensed" id="table-dni">
                             <thead class="thead-light">
                                 <tr>
-                                    <th>Dni</th>
+                                    <th>DNI</th>
                                     <th>Nombre</th>
                                     <th>Apellido Paterno</th>
                                     <th>Apellido Materno</th>
@@ -81,14 +81,12 @@
 
         if (dni)
         {
-            if(dni.length <= 50){
+            if(dni.length <= 500){
                 for (var i=0; i < dni.length; i++)
                 {
                     $.get("/dni/" + dni[i], function (data)
                     {
                         var table = '';
-
-                        console.log(data)
 
                         if (data.error == 404)
                         {
@@ -114,8 +112,19 @@
                             }
                             else
                             {
-                                var date = $.date(data.midis.original.dtFecNacimiento)
-                                var date2 = $.date2(data.midis.original.dtFecNacimiento)
+                                if (data.oefa.original.fechaNacimiento) {
+                                    var birthday = data.oefa.original.fechaNacimiento
+                                    y = birthday.substr(0,4);
+                                    m = birthday.substr(4,2);
+                                    d = birthday.substr(6,2);
+
+                                    var date = d + '/' + m + '/' + y
+                                    var date2 = y + '/' + m + '/' + d
+
+                                } else {
+                                    var date = $.date(data.midis.original.dtFecNacimiento)
+                                    var date2 = $.date2(data.midis.original.dtFecNacimiento)
+                                }
 
                                 var age = calcularAge(date2)
 

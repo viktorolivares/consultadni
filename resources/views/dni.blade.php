@@ -19,38 +19,69 @@
     </div>
     <div class="col-md-9" id="card-form">
         <div class="card">
-            <div class="card-body mt-3">
+            <div class="card-header bg-transparent">
+                <strong>Consultas Combinadas</strong>
+            </div>
+            <div class="card-body">
                 <form>
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="name">Nombre</label>
-                            <input type="text" class="form-control" id="name">
+                            <input type="text" class="form-control" id="name" readonly>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="lastname1">Apellido Paterno</label>
-                            <input type="text" class="form-control" id="lastname1">
+                            <input type="text" class="form-control" id="lastname1" readonly>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="lastname2">Apellido Materno</label>
-                            <input type="text" class="form-control" id="lastname2">
+                            <input type="text" class="form-control" id="lastname2" readonly>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label for="address">Dirección</label>
-                            <input type="text" class="form-control" id="address">
+                            <label for="status">Estado Civil</label>
+                            <input type="text" class="form-control" id="status" readonly>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="date">Fecha de Nac.</label>
-                            <input type="text" class="form-control" id="date">
+                            <label for="sex">Genero</label>
+                            <input type="text" class="form-control" id="sex" readonly>
                         </div>
                         <div class="form-group col-md-2">
                             <label for="age">Edad</label>
-                            <input type="number" class="form-control" id="age" disabled>
+                            <input type="text" class="form-control" id="age" readonly>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="code">Código de Verf.</label>
-                            <input type="number" class="form-control" id="code" disabled>
+                            <input type="text" class="form-control" id="code" readonly>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="date">Fecha Nac.</label>
+                            <input type="text" class="form-control" id="date" readonly>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="address">Dirección</label>
+                            <input type="text" class="form-control" id="address" readonly>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="ubigeo">Ubigeo</label>
+                            <input type="text" class="form-control" id="ubigeo" readonly>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="department">Departamento</label>
+                            <input type="text" class="form-control" id="department" readonly>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="province">Provincia</label>
+                            <input type="text" class="form-control" id="province" readonly>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="district">Distrito</label>
+                            <input type="text" class="form-control" id="district" readonly>
                         </div>
                     </div>
                 </form>
@@ -93,24 +124,71 @@
                     {
 
                         if (data.midis.original.vMensajeResponse) {
-
                             $.notify(data.midis.original.vMensajeResponse, "error");
                             $("#name").val(data.sunat.original.nombreSoli)
                             $("#lastname1").val(data.sunat.original.apePatSoli)
                             $("#lastname2").val(data.sunat.original.apeMatSoli)
                             $("#code").val(data.codigoV)
+                            }
 
-                        }
-                        else{
+                            else{
 
-                            date = $.date(data.midis.original.dtFecNacimiento)
-                            date2 = $.date2(data.midis.original.dtFecNacimiento)
+                            if (data.oefa.original.fechaNacimiento) {
+                                var birthday = data.oefa.original.fechaNacimiento
+                                y = birthday.substr(0,4);
+                                m = birthday.substr(4,2);
+                                d = birthday.substr(6,2);
+
+                                var date = d + '/' + m + '/' + y
+                                var date2 = y + '/' + m + '/' + d
+
+
+                            } else {
+                                var date = $.date(data.midis.original.dtFecNacimiento)
+                                var date2 = $.date2(data.midis.original.dtFecNacimiento)
+                            }
 
                             $("#name").val(data.sunat.original.nombreSoli)
                             $("#lastname1").val(data.sunat.original.apePatSoli)
                             $("#lastname2").val(data.sunat.original.apeMatSoli)
                             $("#code").val(data.codigoV)
                             $("#address").val(data.midis.original.vDireccion)
+                            $("#ubigeo").val(data.oefa.original.ubigeo)
+
+                            var ubigeo = data.oefa.original.ubigeo
+
+                            $.ajax({
+                                type: "GET",
+                                dataType: "json",
+                                url: "js/ubigeo.json",
+                                success: function (data) {
+                                    $.each(data, function(i, v) {
+                                        if (v.inei_district == ubigeo) {
+                                            $("#department").val(v.departamento)
+                                            $("#province").val(v.provincia)
+                                            $("#district").val(v.distrito)
+                                            return false;
+                                        }
+                                    });
+                                }
+                            })
+
+                            if (data.oefa.original.genero == 117) {
+                                $("#sex").val('Hombre')
+                            } else {
+                                $("#sex").val('Mujer')
+                            }
+
+                            if (data.oefa.original.estadoCivil == 112) {
+                                $("#status").val('Soltero(a)')
+                            } else if(data.oefa.original.estadoCivil == 115) {
+                                $("#status").val('Divorciado(a)')
+                            } else if(data.oefa.original.estadoCivil == 113) {
+                                $("#status").val('Casado(a)')
+                            } else {
+                                $("#status").val('Viudo(a)')
+                            }
+
                             $("#age").val(calcularAge(date2))
 
                             if (calcularAge(date2) < 18) {
@@ -118,12 +196,10 @@
                             }
 
                             $("#date").val(date);
-                        }
+
+                            }
 
                         $.notify("Consulta cargada exitosamente", "success");
-
-                        console.log(data)
-
                     }
                 }
             });
@@ -186,6 +262,12 @@
         $("#address").val('')
         $("#date").val('');
         $("#age").val('');
+        $("#status").val('');
+        $("#sex").val('');
+        $("#ubigeo").val('');
+        $("#department").val('');
+        $("#province").val('');
+        $("#district").val('');
     }
 
 </script>
