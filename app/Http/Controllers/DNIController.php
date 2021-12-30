@@ -48,15 +48,22 @@ class DniController extends Controller
 
     private function getVerifyCode($dni)
     {
-        $suma = 5;
-        $len = strlen($dni);
-        $hash = [3, 2, 7, 6, 5, 4, 3, 2];
-        for ($i = 0; $i < $len; ++$i) {
-            $suma += $dni[$i] * $hash[$i];
-        }
-        $entero = (int) ($suma / 11);
-        $digito = 11 - ($suma - $entero * 11);
+        if (is_numeric($dni)) {
+            $suma = 5;
+            $len = strlen($dni);
+            $hash = [3, 2, 7, 6, 5, 4, 3, 2];
 
-        return $digito > 9 ? $digito - 10 : $digito;
+            for ($i = 0; $i < $len; ++$i) {
+                $suma += $dni[$i] * $hash[$i];
+            }
+
+            $entero = (int) ($suma / 11);
+            $digito = 11 - ($suma - $entero * 11);
+
+            return $digito > 9 ? $digito - 10 : $digito;
+        } else {
+            return response()->json("No es númerico");
+        }
+
     }
 }

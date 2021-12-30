@@ -8,7 +8,7 @@
                 <form method="GET" id="form-dni">
                     <div class="form-group">
                         <label for="exampleFormControlInput1">N° de DNI</label>
-                        <input type="number" class="form-control" id="dni">
+                        <input type="text" class="form-control"  maxlength="8"  id="dni">
                     </div>
                     <div class="form-group float-right">
                         <button class="btn btn-primary" type="submit" id="btn-dni">Apply</button>
@@ -133,7 +133,7 @@
 
                             else{
 
-                            if (data.oefa.original.fechaNacimiento) {
+                            if (data.oefa.original.fechaNacimiento != null) {
                                 var birthday = data.oefa.original.fechaNacimiento
                                 y = birthday.substr(0,4);
                                 m = birthday.substr(4,2);
