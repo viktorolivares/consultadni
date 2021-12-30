@@ -56,7 +56,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="progress my-4" style="height: 30px;">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                     </div>
@@ -148,7 +148,7 @@
                                 }
                                 else
                                 {
-                                    if (data.oefa.original.fechaNacimiento) {
+                                    if (data.oefa.original.fechaNacimiento != null) {
                                         var birthday = data.oefa.original.fechaNacimiento
                                         y = birthday.substr(0,4);
                                         m = birthday.substr(4,2);
@@ -183,7 +183,6 @@
                                     } else {
                                         table += '<td>' + 'M' + '</td>'
                                     }
-
                                     table += '<td>' + data.midis.original.vDireccion + '</td>',
                                     table += '</tr>'
 
@@ -191,9 +190,23 @@
                                 }
                             }
 
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            console.log("Status: " + textStatus);
+                            console.log("Error: " + errorThrown);
+                            progressed = Math.floor( (++i / dni.length * 100) / 2)
+
+                            $(".progress-bar").css("width", progressed + "%")
+                                            .attr("aria-valuenow", progressed)
+                                            .text(progressed + "%");
+
+                            if (progressed == 100) {
+                                $('#card-table').show()
+                                $('#progress').hide()
+                            }
+
                         }
                     });
-
                 }
 
             } else{
@@ -253,11 +266,11 @@
         return age;
     }
 
-    var d = new Date().getTime() ;
+    var excel_name = new Date().getTime() ;
 
     $("#btn-excel").click(function(e) {
         $("#table-dni").table2excel({
-            filename: "dni-" + d + ".xls",
+            filename: "dni-" + excel_name + ".xls",
             preserveColors: false
         });
     });
