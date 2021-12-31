@@ -19,6 +19,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 /*Consultas DNI*/
 Route::get('/dni', [DniController::class, 'dni'])->name('dni');
+Route::get('/age', [DniController::class, 'age'])->name('age');
 Route::get('/services', [DniController::class, 'services'])->name('services');
 Route::get('/dni/{number}', [DniController::class, 'getDni'])->name('consultadni');
 Route::get('/dnimultiple', [DniController::class, 'dniMultiple'])->name('dnimultiple');

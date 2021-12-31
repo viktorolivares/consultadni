@@ -28,6 +28,12 @@ class DniController extends Controller
         return view('services');
     }
 
+    public function age()
+    {
+        return view('age');
+    }
+
+
     public function getDni($dni)
     {
         $midis = Midis::search($dni);

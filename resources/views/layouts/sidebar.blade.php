@@ -26,6 +26,7 @@
                 <h6 class="collapse-header">DNI</h6>
                 <a class="collapse-item {{ (request()->is('dni')) ? 'active' : '' }}" href="{{route('dni')}}">Individual</a>
                 <a class="collapse-item {{ (request()->is('dnimultiple')) ? 'active' : '' }}" href="{{route('dnimultiple')}}">Masivo</a>
+                <a class="collapse-item {{ (request()->is('age')) ? 'active' : '' }}" href="{{route('age')}}">Validar 18+</a>
                 <a class="collapse-item {{ (request()->is('services')) ? 'active' : '' }}" href="{{route('services')}}">Servicios</a>
             </div>
         </div>

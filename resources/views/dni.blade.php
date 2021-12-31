@@ -175,8 +175,10 @@
 
                             if (data.oefa.original.genero == 117) {
                                 $("#sex").val('Hombre')
-                            } else {
+                            } else if(data.oefa.original.genero == 118) {
                                 $("#sex").val('Mujer')
+                            } else {
+                                $("#sex").val('-')
                             }
 
                             if (data.oefa.original.estadoCivil == 112) {
