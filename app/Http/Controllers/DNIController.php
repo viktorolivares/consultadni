@@ -8,6 +8,8 @@ use App\Http\Services\ExternalApi;
 use App\Http\Services\Midis;
 use App\Http\Services\Oefa;
 use App\Http\Services\Sunat;
+// use App\Http\Services\Xyz;
+use Goutte\Client;
 
 
 class DniController extends Controller
@@ -72,4 +74,5 @@ class DniController extends Controller
         }
 
     }
+
 }

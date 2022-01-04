@@ -21,7 +21,7 @@
             <i class="fas fa-fw fa-cog"></i>
             <span>Consultas</span>
         </a>
-        <div id="collapse" class="collapse {{ (request()->is('dni','dnimultiple','services')) ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapse" class="collapse {{ (request()->is('dni','dnimultiple','services', 'age')) ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">DNI</h6>
                 <a class="collapse-item {{ (request()->is('dni')) ? 'active' : '' }}" href="{{route('dni')}}">Individual</a>

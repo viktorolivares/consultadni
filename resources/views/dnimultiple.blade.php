@@ -5,7 +5,7 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="pb-4 text-primary">Máximo 1000 Consultas</h5>
+                    <h5 class="pb-4 text-primary">Máximo 200 Consultas</h5>
                     <form method="GET" id="form-dni">
                         <div class="form-group">
                             <label for="exampleFormControlInput1">N° de DNI</label>
@@ -45,7 +45,6 @@
                                         </tr>
                                     </thead>
                                     <tbody id="body">
-
                                     </tbody>
                                 </table>
                             </div>
@@ -102,7 +101,7 @@
 
         if (dni)
         {
-            if(dni.length <= 1000){
+            if(dni.length <= 200){
                 for (var i=0; i < dni.length; i++)
                 {
                     $.ajax({
@@ -210,7 +209,7 @@
                 }
 
             } else{
-                $.notify("Número máximo de consultas: 1000", "error");
+                $.notify("Número máximo de consultas: 200", "error");
                 $('#card-table').toggle()
             }
         }

@@ -5,7 +5,7 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="pb-4 text-primary">Máximo 500 Consultas</h5>
+                    <h5 class="pb-4 text-primary">Máximo 1000 Consultas</h5>
                     <form method="GET" id="form-dni">
                         <div class="form-group">
                             <label for="exampleFormControlInput1">N° de DNI</label>
@@ -30,7 +30,7 @@
                                 </button>
                             </div>
                             <div class="table-responsive-md">
-                                <table class="table table-bordered table-hover table-sm table-condensed" id="table-dni" style="font-size: 12px">
+                                <table class="table table-bordered table-hover table-sm table-condensed" id="table-dni" style="font-size: 13px">
                                     <thead class="thead-light">
                                         <tr>
                                             <th>DNI</th>
@@ -102,7 +102,7 @@
 
         if (dni)
         {
-            if(dni.length <= 500){
+            if(dni.length <= 1000){
                 for (var i=0; i < dni.length; i++)
                 {
                     $.ajax({
@@ -201,7 +201,7 @@
                     });
                 }
             } else{
-                $.notify("Número máximo de consultas: 500", "error");
+                $.notify("Número máximo de consultas: 1000", "error");
             }
         }
         else
@@ -262,7 +262,6 @@
             preserveColors: false
         });
     });
-
 
 </script>
 
