@@ -149,7 +149,7 @@
                                 if (age < 18 || data.midis.original.vMensajeResponse) {
                                     if (data.midis.original.vMensajeResponse) {
                                         table += '<tr>',
-                                        table += '<td>' + data.externalApi.original.result.DNI + '</td>',
+                                        table += '<td>' + data.midis.original.vNroDocumento + '</td>',
                                         table += '<td>' + data.sunat.original.nombreSoli + '</td>',
                                         table += '<td>' + data.sunat.original.apePatSoli + '</td>',
                                         table += '<td>' + data.sunat.original.apeMatSoli + '</td>',
@@ -164,7 +164,7 @@
                                     else
                                     {
                                         table += '<tr>',
-                                        table += '<td>' + data.externalApi.original.result.DNI + '</td>',
+                                        table += '<td>' + data.midis.original.vNroDocumento + '</td>',
                                         table += '<td>' + data.sunat.original.nombreSoli + '</td>',
                                         table += '<td>' + data.sunat.original.apePatSoli + '</td>',
                                         table += '<td>' + data.sunat.original.apeMatSoli + '</td>',

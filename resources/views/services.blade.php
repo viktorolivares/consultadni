@@ -17,9 +17,9 @@
             </div>
         </div>
     </div>
-    <div class="col-md-9" id="card-form">
+    <div class="col-md-9" id="card-form" style="font-size: 14px">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="card">
                     <div class="card-header bg-dark">
                         <h5 class="card-title text-white">Fuente: Sunat</h5>
@@ -31,7 +31,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="card">
                     <div class="card-header bg-primary">
                         <h5 class="card-title text-white">Fuente: Midis</h5>
@@ -43,7 +43,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="card">
                     <div class="card-header bg-success">
                         <h5 class="card-title text-white">Fuente: Oefa</h5>
@@ -52,18 +52,6 @@
                         <li class="list-group-item" id="nameO">Nombres: <span></span></li>
                         <li class="list-group-item" id="lastname1O">Ap. Paterno: <span></span></li>
                         <li class="list-group-item" id="lastname2O">Ap. Materno: <span></span></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-header bg-info">
-                        <h5 class="card-title text-white">Fuente: External Api</h5>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item" id="nameE">Nombres: <span></span></li>
-                        <li class="list-group-item" id="lastname1E">Ap. Paterno: <span></span></li>
-                        <li class="list-group-item" id="lastname2E">Ap. Materno: <span></span></li>
                     </ul>
                 </div>
             </div>
@@ -137,24 +125,6 @@
                         }
 
                     }
-
-                    /*External Api*/
-                    if (data.externalApi.error == 404){
-                        $.notify("External Api: No se encontró coincidencias", "info");
-                    } else{
-                        if(data.externalApi.original.result.Nombre != null){
-                           $('#nameE span').append(data.externalApi.original.result.Nombre)
-                            $('#lastname1E span').append(data.externalApi.original.result.Paterno)
-                            $('#lastname2E span').append(data.externalApi.original.result.Materno)
-                        } else {
-                            $.notify('External Api: ' + 'No se encontró registros', "error");
-                        }
-
-                    }
-
-                    console.log(data)
-
-
                 }
             });
         }

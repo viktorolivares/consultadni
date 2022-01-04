@@ -131,7 +131,7 @@
                                 if (data.midis.original.vMensajeResponse) {
 
                                     table += '<tr class="table-danger">',
-                                    table += '<td>' + data.externalApi.original.result.DNI + '</td>',
+                                    table += '<td>' + data.midis.original.vNroDocumento + '</td>',
                                     table += '<td>' + data.sunat.original.nombreSoli + '</td>',
                                     table += '<td>' + data.sunat.original.apePatSoli + '</td>',
                                     table += '<td>' + data.sunat.original.apeMatSoli + '</td>',
@@ -169,7 +169,7 @@
                                         table += '<tr>'
                                     }
 
-                                    table += '<td>' + data.externalApi.original.result.DNI + '</td>',
+                                    table += '<td>' + data.midis.original.vNroDocumento + '</td>',
                                     table += '<td>' + data.sunat.original.nombreSoli + '</td>',
                                     table += '<td>' + data.sunat.original.apePatSoli + '</td>',
                                     table += '<td>' + data.sunat.original.apeMatSoli + '</td>',

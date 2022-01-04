@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
-use App\Http\Services\ExternalApi;
 use App\Http\Services\Midis;
 use App\Http\Services\Oefa;
 use App\Http\Services\Sunat;
-// use App\Http\Services\Xyz;
 use Goutte\Client;
 
 
@@ -35,11 +33,9 @@ class DniController extends Controller
         return view('age');
     }
 
-
     public function getDni($dni)
     {
         $midis = Midis::search($dni);
-        $externalApi = ExternalApi::search($dni);
         $oefa = Oefa::search($dni);
         $sunat = Sunat::search($dni);
 
@@ -48,7 +44,6 @@ class DniController extends Controller
         return response()->json([
             'codigoV' => $verifyCode,
             'midis' => $midis,
-            'externalApi' => $externalApi,
             'oefa' => $oefa,
             'sunat' => $sunat
         ]);
