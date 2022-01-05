@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DniController;
 use App\Http\Controllers\OddsController;
-use App\Http\Controllers\PaymentMethodController;
+use App\Http\Controllers\MethodPayController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,7 +28,7 @@ Route::get('/dnimultiple', [DniController::class, 'dniMultiple'])->name('dnimult
 
 
 /*Passarella*/
-Route::get('/niubiz', [PaymentMethodController::class, 'niubiz'])->name('niubiz');
+Route::get('/mp_niubiz', [MethodPayController::class, 'niubiz'])->name('niubiz');
 
 
 /*Web Scraping*/
