@@ -5,7 +5,7 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="pb-4 text-primary">Máximo 200 Consultas</h5>
+                    <h5 class="pb-4 text-primary">Máximo 100 Consultas</h5>
                     <form method="GET" id="form-dni">
                         <div class="form-group">
                             <label for="exampleFormControlInput1">N° de DNI</label>
@@ -24,7 +24,7 @@
                     <div class="card">
                         <div class="card-body mb-2">
                             <div class="my-2">
-                                <button class="btn btn-success" id="btn-excel">
+                                <button class="btn btn-success btn-sm" id="btn-excel">
                                     <i class="fa fa-file-excel"></i> &nbsp;
                                     Proceso finalizado |  Exportar en Excel
                                 </button>
@@ -101,7 +101,7 @@
 
         if (dni)
         {
-            if(dni.length <= 200){
+            if(dni.length <= 100){
                 for (var i=0; i < dni.length; i++)
                 {
                     $.ajax({
@@ -132,10 +132,10 @@
 
                                     table += '<tr class="table-danger">',
                                     table += '<td>' + data.midis.original.vNroDocumento + '</td>',
-                                    table += '<td>' + data.sunat.original.nombreSoli + '</td>',
-                                    table += '<td>' + data.sunat.original.apePatSoli + '</td>',
-                                    table += '<td>' + data.sunat.original.apeMatSoli + '</td>',
-                                    table += '<td>' + data.codigoV + '</td>',
+                                    table += '<td>' + ((data.sunat.original.error)  ? '-' : data.sunat.original.nombreSoli)  + '</td>',
+                                    table += '<td>' + ((data.sunat.original.error)  ? '-' : data.sunat.original.apePatSoli)  + '</td>',
+                                    table += '<td>' + ((data.sunat.original.error)  ? '-' : data.sunat.original.apeMatSoli) + '</td>',
+                                    table += '<td>' + ((data.sunat.original.error)  ? '-' : data.codigoV) + '</td>',
                                     table += '<td>' + data.midis.original.vMensajeResponse + '</td>',
                                     table += '<td>' + '-' + '</td>',
                                     table += '<td>' + '-' + '</td>',
@@ -209,7 +209,7 @@
                 }
 
             } else{
-                $.notify("Número máximo de consultas: 200", "error");
+                $.notify("Número máximo de consultas: 100", "error");
                 $('#card-table').toggle()
             }
         }

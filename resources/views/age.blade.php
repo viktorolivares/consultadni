@@ -24,7 +24,7 @@
                     <div class="card">
                         <div class="card-body mb-2">
                             <div class="my-3">
-                                <button class="btn btn-success" id="btn-excel">
+                                <button class="btn btn-success btn-sm" id="btn-excel">
                                     <i class="fa fa-file-excel"></i> &nbsp;
                                     Proceso finalizado |  Exportar en Excel
                                 </button>
@@ -150,10 +150,10 @@
                                     if (data.midis.original.vMensajeResponse) {
                                         table += '<tr>',
                                         table += '<td>' + data.midis.original.vNroDocumento + '</td>',
-                                        table += '<td>' + data.sunat.original.nombreSoli + '</td>',
-                                        table += '<td>' + data.sunat.original.apePatSoli + '</td>',
-                                        table += '<td>' + data.sunat.original.apeMatSoli + '</td>',
-                                        table += '<td>' + data.codigoV + '</td>',
+                                        table += '<td>' + ((data.sunat.original.error)  ? '-' : data.sunat.original.nombreSoli) + '</td>',
+                                        table += '<td>' + ((data.sunat.original.error)  ? '-' : data.sunat.original.apePatSoli) + '</td>',
+                                        table += '<td>' + ((data.sunat.original.error)  ? '-' : data.sunat.original.apeMatSoli) + '</td>',
+                                        table += '<td>' + ((data.sunat.original.error)  ? '-' : data.codigoV) + '</td>',
                                         table += '<td>' + data.midis.original.vMensajeResponse + '</td>',
                                         table += '<td>' + '-' + '</td>',
                                         table += '<td>' + '-' + '</td>',

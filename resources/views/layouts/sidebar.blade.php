@@ -3,7 +3,7 @@
         <div class="sidebar-brand-icon">
             <i class="fas fa-futbol"></i>
         </div>
-        <div class="sidebar-brand-text mx-1">Apuesta Total</div>
+        <div class="sidebar-brand-text mx-2"> apuestatotal</div>
     </a>
     <hr class="sidebar-divider my-0">
     <li class="nav-item">
@@ -18,7 +18,7 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse" aria-expanded="true"
             aria-controls="collapse">
-            <i class="fas fa-fw fa-cog"></i>
+            <i class="fas fa-fw fa-search"></i>
             <span>Consultas</span>
         </a>
         <div id="collapse" class="collapse {{ (request()->is('dni','dnimultiple','services', 'age')) ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">

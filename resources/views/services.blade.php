@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header bg-dark">
+                    <div class="card-header bg-info">
                         <h5 class="card-title text-white">Fuente: Sunat</h5>
                     </div>
                     <ul class="list-group list-group-flush">

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DniController;
 use App\Http\Controllers\OddsController;
+use App\Http\Controllers\PaymentMethodController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +24,11 @@ Route::get('/age', [DniController::class, 'age'])->name('age');
 Route::get('/services', [DniController::class, 'services'])->name('services');
 Route::get('/dni/{number}', [DniController::class, 'getDni'])->name('consultadni');
 Route::get('/dnimultiple', [DniController::class, 'dniMultiple'])->name('dnimultiple');
+
+
+/*Passarella*/
+Route::get('/niubiz', [PaymentMethodController::class, 'niubiz'])->name('niubiz');
+
 
 /*Web Scraping*/
 Route::get('/odds', [OddsController::class, 'index'])->name('odds');

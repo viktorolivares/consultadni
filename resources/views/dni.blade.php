@@ -125,14 +125,12 @@
 
                         if (data.midis.original.vMensajeResponse) {
                             $.notify(data.midis.original.vMensajeResponse, "error");
-                            $("#name").val(data.sunat.original.nombreSoli)
-                            $("#lastname1").val(data.sunat.original.apePatSoli)
-                            $("#lastname2").val(data.sunat.original.apeMatSoli)
-                            $("#code").val(data.codigoV)
-                            }
-
-                            else{
-
+                            $("#name").val(((data.sunat.original.error)  ? '' : data.sunat.original.nombreSoli))
+                            $("#lastname1").val(((data.sunat.original.error)  ? '' : data.sunat.original.apePatSoli))
+                            $("#lastname2").val(((data.sunat.original.error)  ? '' : data.sunat.original.apeMatSoli))
+                            $("#code").val(((data.sunat.original.error)  ? '' : data.codigoV))
+                        }
+                        else{
                             if (data.oefa.original.fechaNacimiento != null) {
                                 var birthday = data.oefa.original.fechaNacimiento
                                 y = birthday.substr(0,4);
@@ -143,7 +141,8 @@
                                 var date2 = y + '/' + m + '/' + d
 
 
-                            } else {
+                            }
+                            else {
                                 var date = $.date(data.midis.original.dtFecNacimiento)
                                 var date2 = $.date2(data.midis.original.dtFecNacimiento)
                             }
@@ -194,7 +193,7 @@
                             $("#age").val(calcularAge(date2))
 
                             if (calcularAge(date2) < 18) {
-                            $.notify("DNI Corresponde a un menor de edad", "error");
+                                $.notify("DNI Corresponde a un menor de edad", "error");
                             }
 
                             $("#date").val(date);
@@ -203,7 +202,6 @@
 
                         $.notify("Consulta cargada exitosamente", "success");
                     }
-                    console.log(data)
                 }
             });
         }

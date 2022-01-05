@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-lg-8 col-md-8 col-sm-8 mb-2">
             <div class="card">
                 <div class="card-header text-primary">
                     Equipo de Prevención de Fraude - Online
@@ -12,10 +12,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-lg-4 col-md-4 col-sm-4">
             <div class="card">
                 <div class="card-header text-primary">
-                    Digitos DNI
+                    Información Digitos DNI
                 </div>
                 <div class="card-body" style="font-size: 12px">
                     <ul class="list-group">
