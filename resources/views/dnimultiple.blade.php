@@ -97,7 +97,7 @@
         setTimeout (function ()
         {
             btn.prop ('disabled', false);
-        }, 2000);
+        }, 5000);
 
         if (dni)
         {
@@ -194,6 +194,7 @@
                             console.log("Status: " + textStatus);
                             console.log("Error: " + errorThrown);
                             progressed = Math.floor( (++i / dni.length * 100) / 2)
+                            console.log(dni[i])
 
                             $(".progress-bar").css("width", progressed + "%")
                                             .attr("aria-valuenow", progressed)

@@ -5,7 +5,7 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="pb-4 text-primary">Máximo 1000 Consultas</h5>
+                    <h5 class="pb-4 text-primary">Máximo 500 Consultas</h5>
                     <form method="GET" id="form-dni">
                         <div class="form-group">
                             <label for="exampleFormControlInput1">N° de DNI</label>
@@ -90,7 +90,7 @@
         setTimeout (function ()
         {
             btn.prop ('disabled', false);
-        }, 2000);
+        }, 5000);
 
 
         $(".progress-bar").css("width", 0 + "%")
@@ -102,7 +102,7 @@
 
         if (dni)
         {
-            if(dni.length <= 1000){
+            if(dni.length <= 500){
                 for (var i=0; i < dni.length; i++)
                 {
                     $.ajax({
@@ -188,6 +188,7 @@
                             console.log("Status: " + textStatus);
                             console.log("Error: " + errorThrown);
                             progressed = Math.floor( (++i / dni.length * 100) / 2)
+                            console.log(dni[i])
 
                             $(".progress-bar").css("width", progressed + "%")
                                             .attr("aria-valuenow", progressed)
@@ -201,7 +202,7 @@
                     });
                 }
             } else{
-                $.notify("Número máximo de consultas: 1000", "error");
+                $.notify("Número máximo de consultas: 500", "error");
             }
         }
         else

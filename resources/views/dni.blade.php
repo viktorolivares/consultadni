@@ -116,6 +116,9 @@
                 type: 'GET',
                 url: "/dni/" + dni,
                 success: function (data) {
+
+                    console.log(data);
+
                     if (data.error == 404)
                     {
                         $.notify("No se encontró coincidencias", "info");

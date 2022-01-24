@@ -2,32 +2,31 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-3">
             <div class="card">
                 <div class="card-body mt-3">
-                    <table class="table table-bordered table-striped table-hover" id="table">
-                        <thead class="thead-dark">
+                    <table class="table table-bordered table-hover table-sm" id="table">
+                        <thead>
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
-                                <th>Events</th>
                             </tr>
                         </thead>
                         <tbody id="body">
                         </tbody>
                     </table>
-                    <form>
-                        <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <input type="number" id="event" class="form-control" placeholder="Ingresa Número de evento">
-                            </div>
-                        </div>
-                        <button class="btn btn-primary" id="btn-event">Apply</button>
-                    </form>
-                    <div class="card" id="events">
-                        <div class="card-body">
-                        </div>
-                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <form>
+                <div class="form-group">
+                    <input type="number" id="event" class="form-control" placeholder="Ingresa Número de evento">
+                </div>
+                <button class="btn btn-primary" id="btn-event">Apply</button>
+            </form>
+            <div class="card" id="events">
+                <div class="card-body">
                 </div>
             </div>
         </div>
@@ -60,7 +59,6 @@ function queryJson(){
                     '<tr>'+
                     '<td>' + response.data.sports[i].id + '</td>'+
                     '<td>' + response.data.sports[i].name + '</td>'+
-                    '<td>' + response.data.sports[i].events + '</td>'+
                     '</tr>'
                 );
             }

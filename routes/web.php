@@ -26,11 +26,6 @@ Route::get('/services', [DniController::class, 'services'])->name('services');
 Route::get('/dni/{number}', [DniController::class, 'getDni'])->name('consultadni');
 Route::get('/dnimultiple', [DniController::class, 'dniMultiple'])->name('dnimultiple');
 
-
-/*Passarella*/
-Route::get('/mp_niubiz', [MethodPayController::class, 'niubiz'])->name('niubiz');
-
-
 /*Web Scraping*/
 Route::get('/odds', [OddsController::class, 'index'])->name('odds');
 Route::get('/queryodds', [OddsController::class, 'odds'])->name('queryodds');
