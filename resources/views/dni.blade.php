@@ -108,7 +108,7 @@
         setTimeout (function ()
         {
             btn.prop ('disabled', false);
-        }, 2000);
+        }, 5000);
 
         if (dni)
         {
