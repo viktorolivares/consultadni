@@ -11,6 +11,9 @@
                             <label for="exampleFormControlInput1">N° de DNI</label>
                             <textarea class="form-control" id="dni" rows="15"></textarea>
                         </div>
+                        <div class="form-group float-left">
+                            <button class="btn btn-warning" type="reset" id="btn-reset">Reset</button>
+                        </div>
                         <div class="form-group float-right">
                             <button class="btn btn-primary" type="submit" id="btn-dni">Apply</button>
                         </div>
