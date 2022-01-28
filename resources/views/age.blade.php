@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
+    <div class="row mb-2">
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
@@ -58,7 +58,7 @@
                 <div class="col-md-12" id="progress">
                     <div class="card">
                         <div class="card-body">
-                            <div class="progress my-4" style="height: 30px;">
+                            <div class="progress my-4">
                                 <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
