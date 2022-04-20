@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DniController;
 use App\Http\Controllers\OddsController;
-use App\Http\Controllers\MethodPayController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +29,3 @@ Route::get('/dnimultiple', [DniController::class, 'dniMultiple'])->name('dnimult
 /*Web Scraping*/
 Route::get('/odds', [OddsController::class, 'index'])->name('odds');
 Route::get('/queryodds', [OddsController::class, 'odds'])->name('queryodds');
-

@@ -54,6 +54,8 @@ function queryJson(){
 
             table.show()
 
+            console.log(response)
+
             for (i = 0; i < response.data.sports.length; i++){
                 $("#body").append(
                     '<tr>'+
