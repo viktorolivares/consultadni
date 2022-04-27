@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\Request;
 Use GuzzleHttp\Client;
-use Carbon\Carbon;
-use Str;
 
 class OddsController extends Controller
 {

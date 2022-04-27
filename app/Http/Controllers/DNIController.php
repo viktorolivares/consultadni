@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Http;
-use Illuminate\Http\Request;
 use App\Http\Services\Midis;
 use App\Http\Services\Oefa;
 use App\Http\Services\Sunat;
-use Goutte\Client;
-
 
 class DniController extends Controller
 {
