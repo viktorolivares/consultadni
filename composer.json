@@ -8,6 +8,7 @@
         "php": "^7.3|^8.0",
         "fabpot/goutte": "^4.0",
         "fruitcake/laravel-cors": "^2.0",
+        "giansalex/peru-consult": "^4.5",
         "guzzlehttp/guzzle": "^7.4",
         "laravel/framework": "^8.65",
         "laravel/sanctum": "^2.11",

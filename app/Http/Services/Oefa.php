@@ -24,9 +24,6 @@ class Oefa
                 'User-Agent' => 'laravel/guzzle',
                 'Accept' => 'application/json',
             ],
-            'allow_redirects' => [
-                'max' => 5
-            ],
         ];
 
         $data = $client->request('GET', $dni);

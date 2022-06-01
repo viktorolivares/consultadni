@@ -6,6 +6,7 @@ use App\Http\Services\Midis;
 use App\Http\Services\Oefa;
 use App\Http\Services\Sunat;
 
+
 class DniController extends Controller
 {
 
@@ -41,7 +42,7 @@ class DniController extends Controller
             'codigoV' => $verifyCode,
             'midis' => $midis,
             'oefa' => $oefa,
-            'sunat' => $sunat
+            'sunat' => $sunat,
         ]);
     }
 

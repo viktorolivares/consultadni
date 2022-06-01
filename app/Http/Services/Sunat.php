@@ -24,9 +24,6 @@ class Sunat
                 'User-Agent' => 'laravel/guzzle',
                 'Accept' => 'application/json',
             ],
-            'allow_redirects' => [
-                'max' => 5
-            ],
             'query' => [
                 'tipDocu' => 1,
                 'numDocu'=> $dni

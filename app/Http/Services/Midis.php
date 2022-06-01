@@ -24,9 +24,6 @@ class Midis
                 'User-Agent' => 'laravel/guzzle',
                 'Accept' => 'application/json',
             ],
-            'allow_redirects' => [
-                'max' => 5
-            ],
             'query' => [
                 'iCodAplicacion' => 27,
                 'iIdTipDocumento' => 1,

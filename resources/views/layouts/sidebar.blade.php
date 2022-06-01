@@ -25,8 +25,11 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">DNI</h6>
                 <a class="collapse-item {{ (request()->is('dni')) ? 'active' : '' }}" href="{{route('dni')}}">Individual</a>
-                <a class="collapse-item {{ (request()->is('dnimultiple')) ? 'active' : '' }}" href="{{route('dnimultiple')}}">Masivo</a>
+                <a class="collapse-item {{ (request()->is('dni-multiple')) ? 'active' : '' }}" href="{{route('dni-multiple')}}">Masivo</a>
                 <a class="collapse-item {{ (request()->is('age')) ? 'active' : '' }}" href="{{route('age')}}">Validar 18+</a>
+                <h6 class="collapse-header">RUC</h6>
+                <a class="collapse-item {{ (request()->is('ruc')) ? 'active' : '' }}" href="{{route('ruc')}}">RUC</a>
+                <h6 class="collapse-header">Servicios</h6>
                 <a class="collapse-item {{ (request()->is('services')) ? 'active' : '' }}" href="{{route('services')}}">Servicios</a>
             </div>
         </div>
