@@ -76,13 +76,11 @@
         var btn = $(this)
         btn.prop('disabled', true);
 
-        setTimeout (function ()
-        {
-            btn.prop ('disabled', false);
+        setTimeout(function () {
+            btn.prop('disabled', false);
         }, 2000);
 
-        if (dni)
-        {
+        if (dni) {
             $.ajax({
                 type: 'GET',
                 url: "/dni/" + dni,
@@ -91,53 +89,56 @@
                     /*Sunat*/
                     if (data.sunat.success == false) {
                         $.notify('Sunat: ' + data.sunat.message, "info");
-                    }else{
-                        if(data.sunat.original.error){
+                    } else {
+                        if (data.sunat.original.error) {
                             $.notify('Sunat: ' + data.sunat.original.error, "error");
-                        } else{
+                        } else {
                             $('#nameS span').append(data.sunat.original.nombreSoli)
                             $('#lastname1S span').append(data.sunat.original.apePatSoli)
                             $('#lastname2S span').append(data.sunat.original.apeMatSoli)
                         }
                     }
 
-
                     /*Midis*/
-                    if (data.midis.error == 404){
+                    if (data.midis.error == 404) {
                         $.notify("Midis: No se encontró coincidencias", "info");
-                    } else{
-                        if(!data.midis.original.vMensajeResponse){
+                    } else {
+                        if (!data.midis.original.vMensajeResponse) {
                             $('#nameM span').append(data.midis.original.vNombres)
                             $('#lastname1M span').append(data.midis.original.vApePaterno)
                             $('#lastname2M span').append(data.midis.original.vApeMaterno)
-                        } else{
+                        } else {
                             $.notify('Midis: ' + data.midis.original.vMensajeResponse, "error");
                         }
                     }
 
                     /*Oefa*/
-                    if (data.oefa.error == 404){
+                    if (data.oefa.error == 404) {
                         $.notify("Oefa: No se encontró coincidencias", "info");
-                    } else{
-                        if(data.oefa.original.esValido == "true"){
+                    } else {
+                        if (data.oefa.original.esValido == "true") {
                             $('#nameO span').append(data.oefa.original.nombres)
                             $('#lastname1O span').append(data.oefa.original.apellidoPaterno)
                             $('#lastname2O span').append(data.oefa.original.apellidoMaterno)
-                        } else{
+                        } else {
                             $.notify('Oefa: ' + data.oefa.original.mensaje, "error");
                         }
 
                     }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    $.notify("Status: " + textStatus,'error');
+                    $.notify("Error: " + errorThrown,'error');
+                    $.notify("Error 500 en Servidor - Midis" ,'error');
                 }
             });
         }
-        else
-        {
-            $.notify("Ingrese un número de DNI", "error", { position:"top center" });
+        else {
+            $.notify("Ingrese un número de DNI", "error", { position: "top center" });
         }
     });
 
-    $.date = function(dateObject) {
+    $.date = function (dateObject) {
         var d = new Date(dateObject);
         var day = d.getDate();
         var month = d.getMonth() + 1;
@@ -153,7 +154,7 @@
         return date;
     };
 
-    $.date2 = function(dateObject) {
+    $.date2 = function (dateObject) {
         var d = new Date(dateObject);
         var day = d.getDate();
         var month = d.getMonth() + 1;
@@ -181,7 +182,7 @@
         return age;
     }
 
-    function resetData(){
+    function resetData() {
         $('#nameS span').empty()
         $('#lastname1S span').empty()
         $('#lastname2S span').empty()
@@ -212,4 +213,3 @@
 </script>
 
 @endpush
-

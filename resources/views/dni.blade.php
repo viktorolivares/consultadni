@@ -8,7 +8,7 @@
                 <form method="GET" id="form-dni">
                     <div class="form-group">
                         <label for="exampleFormControlInput1">N° de DNI</label>
-                        <input type="text" class="form-control"  maxlength="8"  id="dni">
+                        <input type="text" class="form-control" maxlength="8" id="dni">
                     </div>
                     <div class="form-group float-left">
                         <button class="btn btn-warning" type="reset" id="btn-reset">Reset</button>
@@ -108,13 +108,11 @@
         var btn = $(this)
         btn.prop('disabled', true);
 
-        setTimeout (function ()
-        {
-            btn.prop ('disabled', false);
+        setTimeout(function () {
+            btn.prop('disabled', false);
         }, 5000);
 
-        if (dni)
-        {
+        if (dni) {
             $.ajax({
                 type: 'GET',
                 url: "/dni/" + dni,
@@ -122,26 +120,24 @@
 
                     console.log(data);
 
-                    if (data.error == 404)
-                    {
+                    if (data.error == 404) {
                         $.notify("No se encontró coincidencias", "info");
                     }
-                    else
-                    {
+                    else {
 
                         if (data.midis.original.vMensajeResponse) {
                             $.notify(data.midis.original.vMensajeResponse, "error");
-                            $("#name").val(((data.sunat.original.error)  ? '' : data.sunat.original.nombreSoli))
-                            $("#lastname1").val(((data.sunat.original.error)  ? '' : data.sunat.original.apePatSoli))
-                            $("#lastname2").val(((data.sunat.original.error)  ? '' : data.sunat.original.apeMatSoli))
-                            $("#code").val(((data.sunat.original.error)  ? '' : data.codigoV))
+                            $("#name").val(((data.sunat.original.error) ? '' : data.sunat.original.nombreSoli))
+                            $("#lastname1").val(((data.sunat.original.error) ? '' : data.sunat.original.apePatSoli))
+                            $("#lastname2").val(((data.sunat.original.error) ? '' : data.sunat.original.apeMatSoli))
+                            $("#code").val(((data.sunat.original.error) ? '' : data.codigoV))
                         }
-                        else{
+                        else {
                             if (data.oefa.original.fechaNacimiento != null) {
                                 var birthday = data.oefa.original.fechaNacimiento
-                                y = birthday.substr(0,4);
-                                m = birthday.substr(4,2);
-                                d = birthday.substr(6,2);
+                                y = birthday.substr(0, 4);
+                                m = birthday.substr(4, 2);
+                                d = birthday.substr(6, 2);
 
                                 var date = d + '/' + m + '/' + y
                                 var date2 = y + '/' + m + '/' + d
@@ -167,7 +163,7 @@
                                 dataType: "json",
                                 url: "js/ubigeo.json",
                                 success: function (data) {
-                                    $.each(data, function(i, v) {
+                                    $.each(data, function (i, v) {
                                         if (v.inei_district == ubigeo) {
                                             $("#department").val(v.departamento)
                                             $("#province").val(v.provincia)
@@ -180,7 +176,7 @@
 
                             if (data.oefa.original.genero == 117) {
                                 $("#sex").val('Hombre')
-                            } else if(data.oefa.original.genero == 118) {
+                            } else if (data.oefa.original.genero == 118) {
                                 $("#sex").val('Mujer')
                             } else {
                                 $("#sex").val('-')
@@ -188,9 +184,9 @@
 
                             if (data.oefa.original.estadoCivil == 112) {
                                 $("#status").val('Soltero(a)')
-                            } else if(data.oefa.original.estadoCivil == 115) {
+                            } else if (data.oefa.original.estadoCivil == 115) {
                                 $("#status").val('Divorciado(a)')
-                            } else if(data.oefa.original.estadoCivil == 113) {
+                            } else if (data.oefa.original.estadoCivil == 113) {
                                 $("#status").val('Casado(a)')
                             } else {
                                 $("#status").val('-')
@@ -204,20 +200,24 @@
 
                             $("#date").val(date);
 
-                            }
+                        }
 
                         $.notify("Consulta cargada exitosamente", "success");
                     }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    $.notify("Status: Error en servidor externo | " + textStatus,'error');
+                    $.notify("Error: " + errorThrown,'error');
+                    $.notify("Error 500 en Servidor - Midis" ,'error');
                 }
             });
         }
-        else
-        {
-            $.notify("Ingrese un número de DNI", "error", { position:"top center" });
+        else {
+            $.notify("Ingrese un número de DNI", "error", { position: "top center" });
         }
     });
 
-    $.date = function(dateObject) {
+    $.date = function (dateObject) {
         var d = new Date(dateObject);
         var day = d.getDate();
         var month = d.getMonth() + 1;
@@ -233,7 +233,7 @@
         return date;
     };
 
-    $.date2 = function(dateObject) {
+    $.date2 = function (dateObject) {
         var d = new Date(dateObject);
         var day = d.getDate();
         var month = d.getMonth() + 1;
@@ -261,7 +261,7 @@
         return age;
     }
 
-    function resetForm(){
+    function resetForm() {
         $("#name").val('')
         $("#lastname1").val('')
         $("#lastname2").val('')
@@ -280,4 +280,3 @@
 </script>
 
 @endpush
-

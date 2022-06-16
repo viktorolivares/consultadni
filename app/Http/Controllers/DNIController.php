@@ -37,7 +37,7 @@ class DniController extends Controller
         $sunat = Sunat::search($dni);
 
         $verifyCode = $this->getVerifyCode($dni);
-
+        
         return response()->json([
             'codigoV' => $verifyCode,
             'midis' => $midis,

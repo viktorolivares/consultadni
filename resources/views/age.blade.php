@@ -188,8 +188,8 @@
                             }
                         },
                         error: function(XMLHttpRequest, textStatus, errorThrown) {
-                            console.log("Status: " + textStatus);
-                            console.log("Error: " + errorThrown);
+                            $.notify("Status: Error en servidor externo | " + textStatus,'error');
+                        $.notify("Error: " + errorThrown,'error');
                             progressed = Math.floor( (++i / dni.length * 100) / 2)
                             console.log(dni[i])
 

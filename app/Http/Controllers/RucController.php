@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use ApiSunat as GlobalApiSunat;
 use App\Http\Services\ApiSunat;
 
 class RucController extends Controller

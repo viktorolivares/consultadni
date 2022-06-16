@@ -3,7 +3,7 @@
         <div class="sidebar-brand-icon">
             <i class="fas fa-futbol"></i>
         </div>
-        <div class="sidebar-brand-text mx-2"> apuestatotal</div>
+        <div class="sidebar-brand-text mx-2">AT</div>
     </a>
     <hr class="sidebar-divider my-0">
     <li class="nav-item">
