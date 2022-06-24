@@ -37,7 +37,7 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-header bg-primary">
-                        <h5 class="card-title text-white">Fuente: Midis</h5>
+                        <h5 class="card-title text-white">Fuente: JNE</h5>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item" id="nameM">Nombres: <span></span></li>
@@ -86,6 +86,7 @@
                 url: "/dni/" + dni,
                 success: function (data) {
 
+                    console.log(data)
                     /*Sunat*/
                     if (data.sunat.success == false) {
                         $.notify('Sunat: ' + data.sunat.message, "info");
@@ -99,16 +100,16 @@
                         }
                     }
 
-                    /*Midis*/
-                    if (data.midis.error == 404) {
-                        $.notify("Midis: No se encontró coincidencias", "info");
+                    /*JNE*/
+                    if (data.jne.error == 404) {
+                        $.notify("JNE: No se encontró coincidencias", "info");
                     } else {
-                        if (!data.midis.original.vMensajeResponse) {
-                            $('#nameM span').append(data.midis.original.vNombres)
-                            $('#lastname1M span').append(data.midis.original.vApePaterno)
-                            $('#lastname2M span').append(data.midis.original.vApeMaterno)
+                        if (!data.jne.original.vMensajeResponse) {
+                            $('#nameM span').append(data.jne.original.nombres)
+                            $('#lastname1M span').append(data.jne.original.apellidoPaterno)
+                            $('#lastname2M span').append(data.jne.original.apellidoMaterno)
                         } else {
-                            $.notify('Midis: ' + data.midis.original.vMensajeResponse, "error");
+                            $.notify('JNE: ' + data.jne.error, "error");
                         }
                     }
 

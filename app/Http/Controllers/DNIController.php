@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Services\Midis;
-use App\Http\Services\Oefa;
+use App\Http\Services\ExternalApi;
 use App\Http\Services\Sunat;
-
+use App\Http\Services\Oefa;
+use App\Http\Services\Jne;
 
 class DniController extends Controller
 {
@@ -32,17 +32,19 @@ class DniController extends Controller
 
     public function getDni($dni)
     {
-        $midis = Midis::search($dni);
-        $oefa = Oefa::search($dni);
+        $externa = ExternalApi::search($dni);
         $sunat = Sunat::search($dni);
+        $oefa = Oefa::search($dni);
+        $jne = Jne::search($dni);
 
         $verifyCode = $this->getVerifyCode($dni);
-        
+
         return response()->json([
+            'apiExterna' => $externa,
             'codigoV' => $verifyCode,
-            'midis' => $midis,
-            'oefa' => $oefa,
             'sunat' => $sunat,
+            'oefa' => $oefa,
+            'jne' => $jne,
         ]);
     }
 

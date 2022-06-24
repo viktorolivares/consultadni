@@ -116,6 +116,9 @@
             $.ajax({
                 type: 'GET',
                 url: "/dni/" + dni,
+                beforeSend: function(){
+                    $("div.loading").show();
+                },
                 success: function (data) {
 
                     console.log(data);
@@ -125,8 +128,8 @@
                     }
                     else {
 
-                        if (data.midis.original.vMensajeResponse) {
-                            $.notify(data.midis.original.vMensajeResponse, "error");
+                        if (data.oefa.original.esValido != "true") {
+                            $.notify(data.oefa.original.mensaje, "error");
                             $("#name").val(((data.sunat.original.error) ? '' : data.sunat.original.nombreSoli))
                             $("#lastname1").val(((data.sunat.original.error) ? '' : data.sunat.original.apePatSoli))
                             $("#lastname2").val(((data.sunat.original.error) ? '' : data.sunat.original.apeMatSoli))
@@ -144,16 +147,12 @@
 
 
                             }
-                            else {
-                                var date = $.date(data.midis.original.dtFecNacimiento)
-                                var date2 = $.date2(data.midis.original.dtFecNacimiento)
-                            }
 
                             $("#name").val(data.sunat.original.nombreSoli)
                             $("#lastname1").val(data.sunat.original.apePatSoli)
                             $("#lastname2").val(data.sunat.original.apeMatSoli)
                             $("#code").val(data.codigoV)
-                            $("#address").val(data.midis.original.vDireccion)
+                            $("#address").val(data.oefa.original.direccion)
                             $("#ubigeo").val(data.oefa.original.ubigeo)
 
                             var ubigeo = data.oefa.original.ubigeo
@@ -204,17 +203,20 @@
 
                         $.notify("Consulta cargada exitosamente", "success");
                     }
+
+                    $("div.loading").hide();
                 },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    $.notify("Status: Error en servidor externo | " + textStatus,'error');
-                    $.notify("Error: " + errorThrown,'error');
-                    $.notify("Error 500 en Servidor - Midis" ,'error');
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    $.notify("Status: Error en servidor externo", 'error');
+                    $.notify("Error: " + errorThrown, 'error');
                 }
             });
         }
         else {
             $.notify("Ingrese un número de DNI", "error", { position: "top center" });
         }
+
+
     });
 
     $.date = function (dateObject) {
@@ -276,6 +278,7 @@
         $("#province").val('');
         $("#district").val('');
     }
+
 
 </script>
 

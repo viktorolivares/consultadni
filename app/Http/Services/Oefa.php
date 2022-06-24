@@ -26,7 +26,7 @@ class Oefa
             ],
         ];
 
-        $data = $client->request('GET', $dni);
+        $data = $client->request('GET', $dni, $parameters);
 
         if (!$data) {
             return response()->json(["error" => 404]);

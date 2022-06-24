@@ -1,72 +1,75 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row mb-2">
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="pb-4 text-primary">Máximo 500 Consultas</h5>
-                    <form method="GET" id="form-dni">
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">N° de DNI</label>
-                            <textarea class="form-control" id="dni" rows="15"></textarea>
-                        </div>
-                        <div class="form-group float-left">
-                            <button class="btn btn-warning" type="reset" id="btn-reset">Reset</button>
-                        </div>
-                        <div class="form-group float-right">
-                            <button class="btn btn-primary" type="submit" id="btn-dni">Apply</button>
-                        </div>
-                    </form>
-                </div>
+<div class="row mb-2">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="pb-4 text-primary">Máximo 500 Consultas</h5>
+                <form method="GET" id="form-dni">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">N° de DNI</label>
+                        <textarea class="form-control" id="dni" rows="15"></textarea>
+                    </div>
+                    <div class="form-group float-left">
+                        <button class="btn btn-warning" type="reset" id="btn-reset">Reset</button>
+                    </div>
+                    <div class="form-group float-right">
+                        <button class="btn btn-primary" type="submit" id="btn-dni">Apply</button>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="col-md-9">
-            <div class="row">
-                <div class="col-md-12 mb-3" id="card-table">
-                    <div class="card">
-                        <div class="card-body mb-2">
-                            <div class="my-3">
-                                <button class="btn btn-success btn-sm" id="btn-excel">
-                                    <i class="fa fa-file-excel"></i> &nbsp;
-                                    Proceso finalizado |  Exportar en Excel
-                                </button>
-                            </div>
-                            <div class="table-responsive-md">
-                                <table class="table table-bordered table-hover table-sm table-condensed" id="table-dni" style="font-size: 13px">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th>DNI</th>
-                                            <th>Nombre</th>
-                                            <th>Apellido Paterno</th>
-                                            <th>Apellido Materno</th>
-                                            <th>Código de Verf.</th>
-                                            <th>Fecha de Nac.</th>
-                                            <th>Edad</th>
-                                            <th>Genero</th>
-                                            <th>Dirección</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="body">
+    </div>
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-12 mb-3" id="card-table">
+                <div class="card">
+                    <div class="card-body mb-2">
+                        <div class="my-3">
+                            <button class="btn btn-success btn-sm" id="btn-excel">
+                                <i class="fa fa-file-excel"></i> &nbsp;
+                                Proceso finalizado | Exportar en Excel
+                            </button>
+                        </div>
+                        <div class="table-responsive-md">
+                            <table class="table table-bordered table-hover table-sm table-condensed" id="table-dni"
+                                style="font-size: 13px">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>DNI</th>
+                                        <th>Nombre</th>
+                                        <th>Apellido Paterno</th>
+                                        <th>Apellido Materno</th>
+                                        <th>Código de Verf.</th>
+                                        <th>Fecha de Nac.</th>
+                                        <th>Edad</th>
+                                        <th>Genero</th>
+                                        <th>Dirección</th>
+                                        <th>Mensaje</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="body">
 
-                                    </tbody>
-                                </table>
-                            </div>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12" id="progress">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="progress my-4">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+            </div>
+            <div class="col-md-12" id="progress">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="progress my-4">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 @endsection
 
 @push('scripts')
@@ -90,131 +93,141 @@
 
         btn.prop('disabled', true);
 
-        setTimeout (function ()
-        {
-            btn.prop ('disabled', false);
+        setTimeout(function () {
+            btn.prop('disabled', false);
         }, 5000);
 
 
-        $(".progress-bar").css("width", 0 + "%")
-                          .attr("aria-valuenow", 0)
-                          .text(0 + "%");
+        // $(".progress-bar").css("width", 0 + "%")
+        //     .attr("aria-valuenow", 0)
+        //     .text(0 + "%");
 
-        $('#progress').toggle();
+        // $('#progress').toggle();
 
 
-        if (dni)
-        {
-            if(dni.length <= 500){
-                for (var i=0; i < dni.length; i++)
-                {
+        if (dni) {
+            if (dni.length <= 500) {
+                for (var i = 0; i < dni.length; i++) {
                     $.ajax({
                         type: 'GET',
-                        url: "/dni/" +  dni[i],
+                        url: "/dni/" + dni[i],
                         data: {},
-                        success: function(data){
+                        beforeSend: function(){
+                            $("div.loading").show();
+                        },
+                        success: function (data) {
+
+                            console.log(data);
+
                             var table = '';
 
-                            progressed = Math.floor( (++i / dni.length * 100) / 2)
+                            // progressed = Math.floor((++i / dni.length * 100) / 2)
 
-                            $(".progress-bar").css("width", progressed + "%")
-                                            .attr("aria-valuenow", progressed)
-                                            .text(progressed + "%");
+                            // $(".progress-bar").css("width", progressed + "%")
+                            //     .attr("aria-valuenow", progressed)
+                            //     .text(progressed + "%");
 
-                            if (progressed == 100) {
-                                $('#card-table').show()
-                                $('#progress').hide()
-                            }
+                            // if (progressed == 100) {
+                            //     $('#card-table').show()
+                            //     $('#progress').hide()
+                            // }
 
-                            if (data.error == 404)
-                            {
+                            if (data.error == 404) {
                                 $.notify("Ocurrió un error, no xiste coincidencias", "info");
                             }
-                            else
-                            {
-                                if (data.oefa.original.fechaNacimiento != null) {
-                                    var birthday = data.oefa.original.fechaNacimiento
-                                    y = birthday.substr(0,4);
-                                    m = birthday.substr(4,2);
-                                    d = birthday.substr(6,2);
+                            else {
+                                if (data.oefa.original.esValido == "false") {
 
-                                    var date = d + '/' + m + '/' + y
-                                    var date2 = y + '/' + m + '/' + d
-                                }
-                                else
-                                {
-                                    var date = $.date(data.midis.original.dtFecNacimiento)
-                                    var date2 = $.date2(data.midis.original.dtFecNacimiento)
-                                }
-
-                                var age = calcularAge(date2)
-
-                                if (age < 18 || data.midis.original.vMensajeResponse) {
-                                    if (data.midis.original.vMensajeResponse) {
-                                        table += '<tr>',
-                                        table += '<td>' + data.midis.original.vNroDocumento + '</td>',
-                                        table += '<td>' + ((data.sunat.original.error)  ? '-' : data.sunat.original.nombreSoli) + '</td>',
-                                        table += '<td>' + ((data.sunat.original.error)  ? '-' : data.sunat.original.apePatSoli) + '</td>',
-                                        table += '<td>' + ((data.sunat.original.error)  ? '-' : data.sunat.original.apeMatSoli) + '</td>',
-                                        table += '<td>' + ((data.sunat.original.error)  ? '-' : data.codigoV) + '</td>',
-                                        table += '<td>' + data.midis.original.vMensajeResponse + '</td>',
+                                    table += '<tr class="table-danger">',
+                                        table += '<td>' + data.jne.original.dni + '</td>',
+                                        table += '<td>' + ((data.sunat.original.error) ? '-' : data.sunat.original.nombreSoli) + '</td>',
+                                        table += '<td>' + ((data.sunat.original.error) ? '-' : data.sunat.original.apePatSoli) + '</td>',
+                                        table += '<td>' + ((data.sunat.original.error) ? '-' : data.sunat.original.apeMatSoli) + '</td>',
+                                        table += '<td>' + ((data.sunat.original.error) ? '-' : data.codigoV) + '</td>',
                                         table += '<td>' + '-' + '</td>',
                                         table += '<td>' + '-' + '</td>',
                                         table += '<td>' + '-' + '</td>',
+                                        table += '<td>' + '-' + '</td>',
+                                        table += '<td>' + data.oefa.original.mensaje + '</td>',
                                         table += '</tr>'
-                                        $('#body').append(table);
+
+                                    $('#body').append(table);
+
+                                }
+                                else {
+                                    if (data.oefa.original.fechaNacimiento != null) {
+                                        var birthday = data.oefa.original.fechaNacimiento
+                                        y = birthday.substr(0, 4);
+                                        m = birthday.substr(4, 2);
+                                        d = birthday.substr(6, 2);
+
+                                        var date = d + '/' + m + '/' + y
+                                        var date2 = y + '/' + m + '/' + d
+
                                     }
-                                    else
-                                    {
-                                        table += '<tr>',
-                                        table += '<td>' + data.midis.original.vNroDocumento + '</td>',
+
+                                    var age = calcularAge(date2)
+
+                                    if (age < 18) {
+                                        table += '<tr class="table-danger">'
+                                    } else {
+                                        table += '<tr>'
+                                    }
+
+                                    table += '<td>' + data.jne.original.dni + '</td>',
                                         table += '<td>' + data.sunat.original.nombreSoli + '</td>',
                                         table += '<td>' + data.sunat.original.apePatSoli + '</td>',
                                         table += '<td>' + data.sunat.original.apeMatSoli + '</td>',
                                         table += '<td>' + data.codigoV + '</td>',
                                         table += '<td>' + date + '</td>',
-                                        table += '<td>' + age + '</td>'
+                                        table += '<td>' + calcularAge(date2) + '</td>'
 
-                                        if (data.oefa.original.genero == 117) {
-                                            table += '<td>' + 'H' + '</td>'
-                                        } else {
-                                            table += '<td>' + 'M' + '</td>'
-                                        }
-                                        table += '<td>' + data.midis.original.vDireccion + '</td>',
-                                        table += '</tr>'
-                                        $('#body').append(table);
+                                    if (data.oefa.original.genero == 117) {
+                                        table += '<td>' + 'H' + '</td>'
+                                    } else {
+                                        table += '<td>' + 'M' + '</td>'
                                     }
+                                    table += '<td>' + data.oefa.original.direccion + '</td>',
+                                        table += '<td>' + data.apiExterna.original.statusMessage + '</td>',
+                                        table += '</tr>'
+
+                                    $('#body').append(table);
                                 }
                             }
+
+                            $("div.loading").hide();
+                            $('#card-table').toggle();
+
                         },
-                        error: function(XMLHttpRequest, textStatus, errorThrown) {
-                            $.notify("Status: Error en servidor externo | " + textStatus,'error');
-                        $.notify("Error: " + errorThrown,'error');
-                            progressed = Math.floor( (++i / dni.length * 100) / 2)
-                            console.log(dni[i])
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
 
-                            $(".progress-bar").css("width", progressed + "%")
-                                            .attr("aria-valuenow", progressed)
-                                            .text(progressed + "%");
+                            $.notify("Status: Error en servidor externo | " + textStatus, 'error');
+                            $.notify("Error: " + errorThrown, 'error');
 
-                            if (progressed == 100) {
-                                $('#card-table').show()
-                                $('#progress').hide()
-                            }
+                            // progressed = Math.floor((++i / dni.length * 100) / 2)
+                            // console.log(dni[i])
+
+                            // $(".progress-bar").css("width", progressed + "%")
+                            //     .attr("aria-valuenow", progressed)
+                            //     .text(progressed + "%");
+
+                            // if (progressed == 100) {
+                            //     $('#card-table').show()
+                            //     $('#progress').hide()
+                            // }
                         }
                     });
                 }
-            } else{
+            } else {
                 $.notify("Número máximo de consultas: 500", "error");
             }
         }
-        else
-        {
+        else {
             $.notify("Ingrese un número de DNI", "error");
         }
     });
 
-    $.date = function(dateObject) {
+    $.date = function (dateObject) {
         var d = new Date(dateObject);
         var day = d.getDate();
         var month = d.getMonth() + 1;
@@ -230,7 +243,7 @@
         return date;
     };
 
-    $.date2 = function(dateObject) {
+    $.date2 = function (dateObject) {
         var d = new Date(dateObject);
         var day = d.getDate();
         var month = d.getMonth() + 1;
@@ -258,9 +271,9 @@
         return age;
     }
 
-    var excel_name = new Date().getTime() ;
+    var excel_name = new Date().getTime();
 
-    $("#btn-excel").click(function(e) {
+    $("#btn-excel").click(function (e) {
         $("#table-dni").table2excel({
             filename: "dni-" + excel_name + ".xls",
             preserveColors: false
@@ -270,4 +283,3 @@
 </script>
 
 @endpush
-
