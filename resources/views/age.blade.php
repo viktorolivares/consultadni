@@ -159,11 +159,6 @@
                                 }
                             }
 
-                            $("div.loading").hide();
-                            $('#card-table').show();
-
-
-
                             progressed = Math.floor((++i / dni.length * 100) / 2)
 
                             $(".progress-bar").css("width", progressed + "%")
