@@ -164,16 +164,16 @@
 
 
 
-                            // progressed = Math.floor((++i / dni.length * 100) / 2)
+                            progressed = Math.floor((++i / dni.length * 100) / 2)
 
-                            // $(".progress-bar").css("width", progressed + "%")
-                            //     .attr("aria-valuenow", progressed)
-                            //     .text(progressed + "%");
+                            $(".progress-bar").css("width", progressed + "%")
+                                .attr("aria-valuenow", progressed)
+                                .text(progressed + "%");
 
-                            // if (progressed == 100) {
-                            //     $('#card-table').show()
-                            //     $('#progress').hide()
-                            // }
+                            if (progressed == 100) {
+                                $("div.loading").hide();
+                                $('#card-table').show();
+                            }
 
                             if (data.error == 404) {
                                 $.notify("Ocurrió un error, no xiste coincidencias", "info");
@@ -238,8 +238,7 @@
                                 }
                             }
 
-                            $("div.loading").hide();
-                            $('#card-table').show();
+
 
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -247,17 +246,17 @@
                             $.notify("Status: Error en servidor externo | " + textStatus, 'error');
                             $.notify("Error: " + errorThrown, 'error');
 
-                            // progressed = Math.floor((++i / dni.length * 100) / 2)
-                            // console.log(dni[i])
+                            progressed = Math.floor((++i / dni.length * 100) / 2)
+                            console.log(dni[i])
 
-                            // $(".progress-bar").css("width", progressed + "%")
-                            //     .attr("aria-valuenow", progressed)
-                            //     .text(progressed + "%");
+                            $(".progress-bar").css("width", progressed + "%")
+                                .attr("aria-valuenow", progressed)
+                                .text(progressed + "%");
 
-                            // if (progressed == 100) {
-                            //     $('#card-table').show()
-                            //     $('#progress').hide()
-                            // }
+                            if (progressed == 100) {
+                                $("div.loading").hide();
+                                $('#card-table').show();
+                            }
                         }
                     });
                 }
