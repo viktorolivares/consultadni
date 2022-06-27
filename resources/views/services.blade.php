@@ -10,11 +10,8 @@
                         <label for="exampleFormControlInput1">N° de DNI</label>
                         <input type="text" class="form-control" maxlength="8" id="dni">
                     </div>
-                    <div class="form-group float-left">
-                        <button class="btn btn-warning" type="reset" id="btn-reset">Reset</button>
-                    </div>
-                    <div class="form-group float-right">
-                        <button class="btn btn-primary" type="submit" id="btn-dni">Apply</button>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block" type="submit" id="btn-dni">Apply</button>
                     </div>
                 </form>
             </div>

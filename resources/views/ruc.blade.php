@@ -10,11 +10,8 @@
                         <label for="exampleFormControlInput1">N° de RUC</label>
                         <input type="text" class="form-control" maxlength="11" id="ruc">
                     </div>
-                    <div class="form-group float-left">
-                        <button class="btn btn-warning" type="reset" id="btn-reset">Reset</button>
-                    </div>
-                    <div class="form-group float-right">
-                        <button class="btn btn-primary" type="submit" id="btn-ruc">Apply</button>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block" type="submit" id="btn-ruc">Apply</button>
                     </div>
                 </form>
             </div>
@@ -49,6 +46,10 @@
                         <div class="form-group col-md-6">
                             <label for="ubigeo">Ubigeo</label>
                             <input type="text" class="form-control" id="ubigeo" readonly>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="tipo">Tipo</label>
+                            <input type="text" class="form-control" id="tipo" readonly>
                         </div>
                     </div>
                     <div class="form-row">
@@ -94,13 +95,25 @@
 
                     console.log(data.ruc);
 
-                    $("#razon-social").val(data.ruc.original.razonSocial);
-                    $("#nombre-comercial").val(data.ruc.original.nombreComercial);
-                    $("#act-economica").val(data.ruc.original.actEconomicas[0]);
-                    $("#ubigeo").val(data.ruc.original.departamento + '/' + data.ruc.original.provincia + '/' + data.ruc.original.distrito);
-                    $("#direccion").val(data.ruc.original.direccion);
-                    $("#estado").val(data.ruc.original.estado);
-                    $("#condicion").val(data.ruc.original.condicion);
+                    if (data.ruc.original) {
+                        $("#razon-social").val(data.ruc.original.razonSocial);
+                        $("#nombre-comercial").val(data.ruc.original.nombreComercial);
+                        $("#act-economica").val(data.ruc.original.actEconomicas[0]);
+                        if (data.ruc.original.departamento != null) {
+                            $("#ubigeo").val(data.ruc.original.departamento + '/' + data.ruc.original.provincia + '/' + data.ruc.original.distrito);
+                        } else {
+                            $("#ubigeo").val('-');
+                        }
+                        $("#direccion").val(data.ruc.original.direccion);
+                        $("#estado").val(data.ruc.original.estado);
+                        $("#condicion").val(data.ruc.original.condicion);
+                        $("#tipo").val(data.ruc.original.tipo);
+
+                        $.notify('Registro encontrado', "success");
+                    } else {
+                        $.notify('Ocurrió un problema', "error");
+                    }
+
 
                 }
             });
@@ -118,6 +131,7 @@
         $("#direccion").val('');
         $("#estado").val('');
         $("#condicion").val('');
+        $("#tipo").val('');
     }
 
 </script>

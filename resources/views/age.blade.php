@@ -11,11 +11,8 @@
                         <label for="exampleFormControlInput1">N° de DNI</label>
                         <textarea class="form-control" id="dni" rows="15"></textarea>
                     </div>
-                    <div class="form-group float-left">
-                        <button class="btn btn-warning" type="reset" id="btn-reset">Reset</button>
-                    </div>
-                    <div class="form-group float-right">
-                        <button class="btn btn-primary" type="submit" id="btn-dni">Apply</button>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block" type="submit" id="btn-dni">Apply</button>
                     </div>
                 </form>
             </div>
@@ -112,7 +109,7 @@
                         type: 'GET',
                         url: "/dni/" + dni[i],
                         data: {},
-                        beforeSend: function(){
+                        beforeSend: function () {
                             $("div.loading").show();
                         },
                         success: function (data) {
@@ -120,6 +117,52 @@
                             console.log(data);
 
                             var table = '';
+
+                            if (data.error == 404) {
+                                $.notify("Ocurrió un error, no xiste coincidencias", "info");
+                            }
+                            else {
+                                if (data.oefa.original.fechaNacimiento != null) {
+                                    var birthday = data.oefa.original.fechaNacimiento
+                                    y = birthday.substr(0, 4);
+                                    m = birthday.substr(4, 2);
+                                    d = birthday.substr(6, 2);
+
+                                    var date = d + '/' + m + '/' + y
+                                    var date2 = y + '/' + m + '/' + d
+
+                                }
+
+                                var age = calcularAge(date2)
+
+                                if (age < 18) {
+                                    table += '<tr class="table-danger">',
+                                    table += '<td>' + data.jne.original.dni + '</td>',
+                                    table += '<td>' + data.sunat.original.nombreSoli + '</td>',
+                                    table += '<td>' + data.sunat.original.apePatSoli + '</td>',
+                                    table += '<td>' + data.sunat.original.apeMatSoli + '</td>',
+                                    table += '<td>' + data.codigoV + '</td>',
+                                    table += '<td>' + date + '</td>',
+                                    table += '<td>' + calcularAge(date2) + '</td>'
+
+                                    if (data.oefa.original.genero == 117) {
+                                        table += '<td>' + 'H' + '</td>'
+                                    } else {
+                                        table += '<td>' + 'M' + '</td>'
+                                    }
+
+                                    table += '<td>' + data.oefa.original.direccion + '</td>',
+                                    table += '<td>' + data.apiExterna.original.statusMessage + '</td>',
+                                    table += '</tr>'
+
+                                    $('#body').append(table);
+                                }
+                            }
+
+                            $("div.loading").hide();
+                            $('#card-table').show();
+
+
 
                             // progressed = Math.floor((++i / dni.length * 100) / 2)
 
@@ -196,7 +239,7 @@
                             }
 
                             $("div.loading").hide();
-                            $('#card-table').toggle();
+                            $('#card-table').show();
 
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {

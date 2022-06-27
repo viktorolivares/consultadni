@@ -2,17 +2,14 @@
 
 @section('content')
     <div class="row">
-        <div class="col-lg-7 col-md-8 col-sm-8 mb-2">
+        <div class="col-lg-6 col-md-6 col-sm-12 mb-2">
             <div class="card">
-                <div class="card-header text-primary">
-                    Equipo de Prevención de Fraude - Online
-                </div>
                 <div class="card-body  text-center">
-                    <img src="{{asset('img/logo_at.png')}}" alt="apuestatotal" class="img-fluid">
+                    <img src="{{asset('img/logo_at.png')}}" alt="apuestatotal" class="img-fluid" width="300">
                 </div>
             </div>
         </div>
-        <div class="col-lg-5 col-md-4 col-sm-4">
+        <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="card">
                 <div class="card-header text-primary">
                     Información Digitos DNI

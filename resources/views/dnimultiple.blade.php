@@ -11,11 +11,8 @@
                         <label for="exampleFormControlInput1">N° de DNI</label>
                         <textarea class="form-control" id="dni" rows="15"></textarea>
                     </div>
-                    <div class="form-group float-left">
-                        <button class="btn btn-warning" type="reset" id="btn-reset">Reset</button>
-                    </div>
-                    <div class="form-group float-right">
-                        <button class="btn btn-primary" type="submit" id="btn-dni">Apply</button>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block" type="submit" id="btn-dni">Apply</button>
                     </div>
                 </form>
             </div>
@@ -76,9 +73,8 @@
 
 <script>
 
-    $('#card-table').hide()
-    $('#table-dni').hide()
-    $('#progress').hide()
+    $('#card-table').hide();
+    $('#progress').hide();
 
     $("#btn-dni").on("click", function (e) {
 
@@ -111,7 +107,7 @@
                         type: 'GET',
                         url: "/dni/" + dni[i],
                         data: {},
-                        beforeSend: function(){
+                        beforeSend: function () {
                             $("div.loading").show();
                         },
                         success: function (data) {
@@ -130,7 +126,6 @@
                             //     $('#card-table').show()
                             //     $('#progress').hide()
                             // }
-
                             if (data.error == 404) {
                                 $.notify("Ocurrió un error, no xiste coincidencias", "info");
                             }
@@ -195,7 +190,7 @@
                             }
 
                             $("div.loading").hide();
-                            $('#card-table').toggle();
+                            $('#card-table').show();
 
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -220,7 +215,7 @@
 
             } else {
                 $.notify("Número máximo de consultas: 100", "error");
-                $('#card-table').toggle()
+                $('#card-table').hide()
             }
         }
         else {
