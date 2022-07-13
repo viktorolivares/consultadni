@@ -32,7 +32,6 @@ class DniController extends Controller
 
     public function getDni($dni)
     {
-        $externa = ExternalApi::search($dni);
         $sunat = Sunat::search($dni);
         $oefa = Oefa::search($dni);
         $jne = Jne::search($dni);
@@ -40,7 +39,6 @@ class DniController extends Controller
         $verifyCode = $this->getVerifyCode($dni);
 
         return response()->json([
-            'apiExterna' => $externa,
             'codigoV' => $verifyCode,
             'sunat' => $sunat,
             'oefa' => $oefa,
