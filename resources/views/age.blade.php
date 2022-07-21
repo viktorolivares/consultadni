@@ -130,20 +130,18 @@
 
                                     var date = d + '/' + m + '/' + y
                                     var date2 = y + '/' + m + '/' + d
-
                                 }
-
                                 var age = calcularAge(date2)
 
                                 if (age < 18) {
                                     table += '<tr class="table-danger">',
-                                    table += '<td>' + data.jne.original.dni + '</td>',
-                                    table += '<td>' + data.sunat.original.nombreSoli + '</td>',
-                                    table += '<td>' + data.sunat.original.apePatSoli + '</td>',
-                                    table += '<td>' + data.sunat.original.apeMatSoli + '</td>',
-                                    table += '<td>' + data.codigoV + '</td>',
-                                    table += '<td>' + date + '</td>',
-                                    table += '<td>' + calcularAge(date2) + '</td>'
+                                        table += '<td>' + data.jne.original.dni + '</td>',
+                                        table += '<td>' + data.sunat.original.nombreSoli + '</td>',
+                                        table += '<td>' + data.sunat.original.apePatSoli + '</td>',
+                                        table += '<td>' + data.sunat.original.apeMatSoli + '</td>',
+                                        table += '<td>' + data.codigoV + '</td>',
+                                        table += '<td>' + date + '</td>',
+                                        table += '<td>' + calcularAge(date2) + '</td>'
 
                                     if (data.oefa.original.genero == 117) {
                                         table += '<td>' + 'H' + '</td>'
@@ -152,8 +150,8 @@
                                     }
 
                                     table += '<td>' + data.oefa.original.direccion + '</td>',
-                                    table += '<td>' + data.apiExterna.original.statusMessage + '</td>',
-                                    table += '</tr>'
+                                        table += '<td>' + data.oefa.original.mensaje + '</td>',
+                                        table += '</tr>'
 
                                     $('#body').append(table);
                                 }
@@ -201,7 +199,6 @@
 
                                         var date = d + '/' + m + '/' + y
                                         var date2 = y + '/' + m + '/' + d
-
                                     }
 
                                     var age = calcularAge(date2)
@@ -212,7 +209,7 @@
                                         table += '<tr>'
                                     }
 
-                                    table += '<td>' + data.jne.original.dni + '</td>',
+                                        table += '<td>' + data.jne.original.dni + '</td>',
                                         table += '<td>' + data.sunat.original.nombreSoli + '</td>',
                                         table += '<td>' + data.sunat.original.apePatSoli + '</td>',
                                         table += '<td>' + data.sunat.original.apeMatSoli + '</td>',
@@ -225,15 +222,14 @@
                                     } else {
                                         table += '<td>' + 'M' + '</td>'
                                     }
-                                    table += '<td>' + data.oefa.original.direccion + '</td>',
-                                        table += '<td>' + data.apiExterna.original.statusMessage + '</td>',
-                                        table += '</tr>'
 
-                                    $('#body').append(table);
+                                    table += '<td>' + data.oefa.original.direccion + '</td>',
+                                    table += '<td>' + data.oefa.original.mensaje + '</td>',
+                                    table += '</tr>'
+
+                                    // $('#body').append(table);
                                 }
                             }
-
-
 
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
